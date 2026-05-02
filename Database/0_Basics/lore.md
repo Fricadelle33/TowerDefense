@@ -1,0 +1,3 @@
+# Design document
+
+> Elementals (Gnomes for earth, Undines for water, Sylphs for air, and spirits of fire), Tree and Forest Spirits (like Dryads, Satyrs, and Hulder), and Water Spirits (including Nereids and Merenneito). Native American: Sedna (Inuit sea goddess), Thunderbird (Plains Indian spirit), and Wakinyan (Sioux spirit). Finnish: Ahti (sea ruler), Tapio (forest god), and Mielikki (forest huntress). General Folklore: Kami (Japanese nature deities), Landvættir (Icelandic land spirits), and Haltija (Finnish household/nature spirits). 

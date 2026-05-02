@@ -1,0 +1,16 @@
+### Hero metas
+* The discarder : 0 free plays but on discard effects
+
+
+### To check with agents
+
+Agents:
+- 1 Creative agent
+- 1 Rule validator
+- 1 Adversarial
+- 1 Exploiter: trying to bend the rules to find OP combos
+
+To be tested by Claude Code agents:
+- Average turn length (cards played per turn)
+- Loop frequency at different draw card densities
+- Which specific card combinations create infinite turns (loop-risk)

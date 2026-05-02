@@ -1,2 +1,3 @@
-Repository for the Tower Defense Board Game
-Florent VL — 2026
+Tower Defense Board Game
+Board game idea, intended for printing.
+This project serves as a digital proof of concept
