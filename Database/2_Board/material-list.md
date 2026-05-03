@@ -62,7 +62,7 @@ component:totem-board # area to store the totems
 
 | ID                  | Description                              | Qty |
 | :------------------ | :--------------------------------------- | :-- |
-| `token:hp`          | HP tracker — enemy & tower durability    | TBD |
+| `token:zeal`        | Zeal tracker — enemy                     | TBD |
 | `token:poison`      | Poison counter (stacking)                | TBD |
 | `token:combo`       | Combo counter per player                 | TBD |
 | `token:slow`        | Slow debuff marker                       | TBD |

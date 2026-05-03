@@ -10,3 +10,11 @@ To be tested by Claude Code agents:
 - Average turn length (cards played per turn)
 - Loop frequency at different draw card densities
 - Which specific card combinations create infinite turns (loop-risk)
+
+
+### Card effects
+~~~yaml
+effect: Reveal the top card of your deck. If it shares your element, draw it.
+effect: Reveal your hand. For each water card revealed, deal 1 damage.
+~~~
+

@@ -16,7 +16,7 @@ market:
   tier_1_count: 12
   tier_2_count: 8
   tier_3_count: 6
-  tier_2_unlocks_on: elite:first-elite-defeated
+  tier_2_unlocks_on: elite:first-elite-repelled
   tier_3_unlocks_on: wave:5
 ```
 

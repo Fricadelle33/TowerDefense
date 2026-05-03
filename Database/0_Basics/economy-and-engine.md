@@ -45,7 +45,7 @@ To discard is to sow, to play is to reap.
 
 When a card is **discarded**:
 1. `on_discard` effect triggers (if any)
-2. Combo counter checked and incremented (if tags chain with previous played card)
+2. Combo counter checked and incremented (if element chains with previous played card)
 3. Player may play 1 card from hand
 
 When a card is **played**:
@@ -94,7 +94,7 @@ Effect magnitude drives the hero's primary output:
 | poison      | Poison stacks applied to enemies     |
 | heal        | Land integrity restored              |
 | push        | Tiles enemies are pushed back        |
-| armor       | Durability added to towers           |
+| shield      | Durability added to towers           |
 
 Multi-axis scaling example (poison):
 ```

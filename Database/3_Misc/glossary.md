@@ -19,8 +19,13 @@ from the path. Triggers repel rewards immediately.
 **Erode** — reduce land integrity. Triggered by enemies reaching objectives
 or completing attacks against the Wights.
 
-**Land integrity** — the Wights' shared HP pool, tracked on the board.
+**Land integrity** — the Wights' shared integrity pool, tracked on the board.
 When land integrity reaches 0, the land is ravaged and players lose.
+
+**Slow N** — reduce enemy speed by N this turn.
+If speed reaches 0 or below, the enemy does not move.
+Frozen is Slow equal to the enemy's full speed stat.
+
 
 ---
 
@@ -39,6 +44,10 @@ Cards go to discard pile.
 **Reveal** — show a card from hand to all players without playing or
 discarding it. The card remains in hand. Revealed cards may trigger
 specific effects but are otherwise unaffected.
+
+**Remove** — permanently remove a card from your hand or discard pile.
+Removed cards leave the game for this scenario.
+Removed cards are not discarded — no on_discard effects trigger.
 
 ### Usage of Reveal
 - Used by active skills and specific card effects
@@ -67,6 +76,20 @@ Silence duration is defined by the effect that caused it.
 
 ---
 
+## Totem states
+
+**Bury** — permanently remove 1 totem from the shared zone.
+The maximum totem capacity decreases by 1 for the remainder
+of the scenario. Buried totems cannot be recovered.
+The player group chooses which totem is buried unless
+the effect specifies otherwise.
+
+**Silence (totem)** — a totem that cannot trigger its effects
+for N turns. The totem remains in the zone. Effects resume
+automatically when silence expires unless reapplied.
+
+---
+
 ## Enemy statuses
 
 **Emboldened** — enemy status triggered when Zeal ≤ 25% of max,
@@ -79,6 +102,26 @@ regenerates Zeal and gains momentum. Double meaning intentional.
 **Corrupted** — enemy empowered by industrial pollution.
 Gains Thriving stacks from poison instead of losing Zeal.
 Direct counter to poison-specialist heroes.
+
+**Erode N** — place N desolation tokens on the quadrant the enemy
+currently occupies. If desolation tokens on that quadrant reach
+its resilience value, the quadrant is Ravaged.
+
+**Ravage N** — reduce global resilience by N permanently.
+All quadrants become N points closer to being Ravaged.
+Cannot be recovered within a scenario.
+
+---
+
+## Map status
+
+**Ravaged** (quadrant state) — a quadrant whose desolation tokens
+have reached its resilience threshold. All towers on a Ravaged
+quadrant are permanently Silenced for the remainder of the scenario.
+
+**Resilience** — the number of desolation tokens a quadrant can
+absorb before becoming Ravaged. Defined on the scenario card.
+Reduced globally by Ravage effects.
 
 ---
 
@@ -97,17 +140,18 @@ cooldown:
 
 Card effects use terse verb + number notation:
 
-| Notation      | Meaning                                                 |
-|:--------------|:-----------------------------------------------------   |
-| Sap N         | Reduce target enemy Zeal by N                           |
-| Erode N       | Reduce land integrity by N                              |
-| Poison N      | Apply N poison stacks to target                         |
-| Push N        | Move target N tiles back along the path                 |
-| Restore N     | Restore N land integrity                                |
-| Reinforce N   | Add N durability to target tower                        |
-| N🪙           | Generate N buy energy                                   |
-| Silence N     | Silence target tower for N turns                        |
-| Summon N      | Reveal the next N cards in the wave deck immediately    |
-| Embolden N | Gain N Zeal at end of turn if no Sap was applied this turn |
+| Notation      | Meaning                                                     |
+|:--------------|:-----------------------------------------------------       |
+| Sap N         | Reduce target enemy Zeal by N                               |
+| Ravage N      | Reduce global resilience by N permanently.                  |
+| Erode N       | Reduce land integrity by N                                  |
+| Poison N      | Apply N poison stacks to target                             |
+| Push N        | Move target N tiles back along the path                     |
+| Restore N     | Restore N land integrity                                    |
+| N🪙           | Generate N buy energy                                       |
+| Silence N     | Silence target tower for N turns                            |
+| Summon N      | Reveal the next N cards in the wave deck immediately        |
+| Embolden N    | Gain N Zeal at end of turn if no Sap was applied this turn  |
+
 
 Effects scale with combo formula unless stated otherwise.

@@ -1,5 +1,10 @@
 # Effects and Statuses
 
+## General rules on card effects
+Card effects must be applied fully, in up-to-bottom, left-to-right order.
+X cards must use all X resources available, but X can be zero.
+
+
 ## Player-applicable statuses
 
 ```yaml
@@ -8,7 +13,7 @@ poisoned:
     At start of enemy turn: lose Zeal equal to current stack count,
     then reduce stack count by 1. Expires at 0 stacks.
   stacks: yes
-  armor_piercing: yes
+  ignore_shield: yes
   duration: equals stack count in turns
   cured_by: TBD
   zeal_curve: "3 stacks → 3+2+1 = 6 total Zeal sapped over 3 turns"
@@ -16,11 +21,13 @@ poisoned:
     burning: no interaction
     frozen: no interaction
 
-frozen:
-  effect: Cannot move this turn
+slowed:
+  effect: Reduce speed by N
+          If speed reaches 0, enemy does not move this turn.
   armor_piercing: yes
+  transitions_to: thawed  ignore_shield: yes
   stacks: no
-  duration: 1 turn
+  duration: N turns
   transitions_to: thawed
   status_triggers:
     burning: shatter — remove frozen, sap 2× Zeal on hit
@@ -34,7 +41,7 @@ thawed:
 
 burning:
   effect: Lose 1 Zeal at start of turn
-  armor_piercing: no
+  ignore_shield: no
   stacks: no
   duration: 1 turn — extinguishes unless reapplied
   propagation: spreads to floor(fire icons played / 3) adjacent tiles
@@ -51,16 +58,6 @@ burning:
 ## Enemy-specific statuses
 
 ```yaml
-emboldened:
-  effect: TBD — suggestion: +2 speed, +1 Zeal-sap on attack
-  stacks: no
-  triggered_by:
-    - zeal ≤ 25% of max zeal
-    - adjacent enemy is Repelled this turn
-  note: >
-    Repelling an enemy carelessly can embolden its neighbors.
-    Players must consider repel order carefully.
-
 thriving:
   effect: TBD — suggestion: regenerate 2 Zeal per turn
   stacks: TBD

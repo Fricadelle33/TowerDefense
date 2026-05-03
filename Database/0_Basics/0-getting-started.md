@@ -17,9 +17,16 @@ This tower defense heavily relies on combo mechanics to defeat waves of increasi
 - Video games: Balatro, Black Jacket, Monster Train, Slay the Spire, Dead Cells 
 
 ### Gameplay
-Players choose an animal hero with its own starting deck, favorite terrain(s), mechanics, etc. To face ever bigger enemies, they can buy cards from the market and unlock new cards – shared or player-specific – by completing contracts or kicking out elite mobs.
+Players choose an animal hero with its own starting deck, favorite terrain(s), mechanics, etc. To face ever bigger enemies, they can buy cards from the market and unlock new cards – shared or player-specific – by completing contracts or repelling elite mobs.
 
 To discard is to sow, to play is to reap. To play cards will cost.
 
 ### Game modes
 This game is intended to be first played in campaign mode, with a set of pre-written scenarios. Then, players can design their own. 
+
+### Tone
+Serious without taking itself seriously.
+The lore is meaningful — ecological destruction is real.
+The execution is playful — an Irish crocodile and his salmon tribe are not.
+Cards, contracts, and flavor text should reflect both simultaneously.
+When in doubt: commit to the bit.

@@ -15,7 +15,7 @@ side: A
 coordinates: [0, 0]
 quadrant:Q1A
 terrain: [swamp, water]
-passive: Heroes with [water] tag gain +1 combo at turn start
+passive: Heroes with [water] element gain +1 combo at turn start
 entry_points: [north, west]
 exit_points: [east]
 scenario_tags: [humid, toxic]

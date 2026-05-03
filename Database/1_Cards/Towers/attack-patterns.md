@@ -12,7 +12,7 @@
 ```yaml
 id: pattern:ring
 icon: ◈
-name: Ring
+name: Ring-6
 requires_facing: false
 targets: 6
 description: Affects all 6 adjacent hex tiles simultaneously. Omnidirectional.
@@ -98,8 +98,8 @@ effect: Enemies on affected tiles take 1 poison counter per turn.
 | :--------- | :----------------------------------- |
 | `first`    | Furthest along the path              |
 | `last`     | Closest to spawn                     |
-| `strongest`| Highest current HP                   |
-| `weakest`  | Lowest current HP                    |
+| `strongest`| Highest current Zeal                 |
+| `weakest`  | Lowest current Zeal                  |
 | `fastest`  | Highest speed stat                   |
 | `tagged`   | Specific enemy tag (defined on card) |
 

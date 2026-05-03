@@ -1,6 +1,3 @@
-# Hero 1
-
-~~~yaml
 # Hero: Croc O'Dill
 
 ~~~yaml
@@ -34,20 +31,20 @@ skills:
     unlock_at_level: 1
     effect: TBD
 
-  - name: Death Roll
+  - name: Tampa Roll
     type: active
     unlock_at_level: 2
     cooldown: once_per_wave
     effect: TBD
 
-  - name: Deathmatch
+  - name: Unmatched
     type: active
     unlock_at_level: 3
     cooldown: once_per_game
     effect: >
       All players simultaneously reveal 1 card from their hand.
       If N distinct elements are represented (N = player count),
-      one target mob suffers ×3 damage this turn.
+      one target mob suffers Sap 3 this turn.
       Target chosen by the triggering player.
       Revealed cards remain in hand.
 
