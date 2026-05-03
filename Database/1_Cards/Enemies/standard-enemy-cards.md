@@ -4,15 +4,29 @@
 
 ~~~yaml
 name: Oil Baron
-difficulty_rating: 3
-hp: 12
-speed: 2
-armor: 3
-on_armor_break: current terrain gets ravaged
+type: elite                   # standard | elite | boss
+difficulty_rating: 3          # back office — informs scenario design and rewards
+zeal: 12
+speed: 2                      # tiles moved per enemy turn
+shield: 3                     # absorbs Sap before Zeal is affected
+
+path_preference: northbound   # northbound | southbound | eastbound | westbound
+
+on_shield_break:
+  if_tower: Silence 2
+  if_hero: Erode 1
+
+effect: Summon 1.             # active effect when entering a tile or per turn — TBD
+
 status_triggers:
-  poisoned: "+6 damage"
-  slowed: "+1 push"
-  burning: "lose 1 armor permanently"
-  blessed: "+2 to all effects this turn"    # buff example on enemy
-  enraged: "+2 speed, +1 damage"            # buff on enemy (dangerous)
+  poisoned: Sap 6 instead
+  burning: lose 1 shield permanently
+  emboldened: Embolden 2
+  thriving: Restore 2 Zeal per turn
+  corrupted: gain 1 thriving stack instead of losing Zeal
+
+reward:
+  xp: 3
+  buy_energy: 2🪙
+  well_card: card:TBD         # omit for standard enemies
 ~~~

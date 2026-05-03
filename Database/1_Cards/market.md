@@ -38,18 +38,6 @@ A player may dismiss their hand at any point during their turn.
 Dismiss is a bold move — it sacrifices tempo entirely for 
 market access and buy power.
 
-## Hero market
-Every hero has its own market where they can buy cards 
-
-~~~yaml
-hero_market:
-  deck: [card:TBD, card:TBD, card:TBD, card:TBD, card:TBD]  # full pool
-  draw: 2          # cards revealed per scenario
-  choose: 1        # player picks one of the two
-  cost: fixed      # defined per card, not variable
-  shuffles: once_per_scenario
-~~~
-
 ## Market composition by player count
 TBD — to be defined once card set size is known
 
