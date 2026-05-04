@@ -67,6 +67,10 @@ resilience:
   Q3: 5
   Q4: 5
 
+# Max towers
+footprint:
+  shared_pool: 15     # total tower cost all heroes can maintain simultaneously
+
 # Objectives
 objectives:
   objective_1: Survive
@@ -94,7 +98,7 @@ paths:
   - start: Q1-entry-west
   - end: Q3-exit-east
   - splits: false
-  - tile-sequence: [hex-tile:straight, hex-tile:y]   # full programmatic path definition
+  - tile-sequence: hex-tile:[straight, y]   # full programmatic path definition. hex-tile is factorized for readability purposes.
 
 # Market
 market:
@@ -103,6 +107,12 @@ market:
   tier_3_count: 6
   tier_2_unlocks_on: elite:first-elite-repelled
   tier_3_unlocks_on: wave:5
+
+# Contracts
+contracts:
+  wave_reward: 1        # contracts revealed per wave cleared
+  deck_size: 12         # total contracts in the deck for this scenario
+  chain: true           # completing a contract reveals 1 additional contract
 
 # Waves
 waves: 3

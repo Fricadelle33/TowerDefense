@@ -43,8 +43,8 @@ skills:
     cooldown: once_per_game
     effect: >
       All players simultaneously reveal 1 card from their hand.
-      If N distinct elements are represented (N = player count),
-      one target mob suffers Sap 3 this turn.
+      If N distinct elements are represented (N = player count), 
+      Sap (3 × combo).
       Target chosen by the triggering player.
       Revealed cards remain in hand.
 
@@ -71,11 +71,20 @@ the_burrow:
   deck:
     - card:swamp-tactics
     - card:river-cunning
-    - card:death-roll
+    - card:croc-monsieur
     - card:apex-predator
     - card:TBD
 
 campaign_additions: []
 
-starting_totem: null
+# XP
+xp: 0                     # current XP
+level: 1                  # current level
+xp_to_next_level:
+  2: 5
+  3: 12
+
+xp_modifier:
+  on_ally_repel: +2 XP    # gains 2 extra XP when a teammate deals the decisive sap
+  on_self_repel: +0 XP    # no bonus for own repels — support, not DPS
 ~~~

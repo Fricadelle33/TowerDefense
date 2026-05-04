@@ -10,7 +10,7 @@ tier: [1, 2]
 cost: 4
 terrain: [swamp, forest]
 tags: [poison, zone]
-attack_pattern: ring-6        # references attack-patterns.md
+attack_pattern: pattern:ring  # references tower-attacks.md
 requires_facing: false
 targets: AoE                  # single | AoE | N (numeric cap)
 target_filter: ground         # ground | aerial | all
@@ -23,6 +23,10 @@ levels:
     effect: Poison 1 all enemies on affected tiles per turn.
   2:
     effect: Poison 2 all enemies on affected tiles per turn.
+terrain_affinity:
+  mountains: +2 to all effects
+  jungle: -2 to all effects
+  swamp: Poison 1 additional stack
 ~~~
 
 ## Market cards

@@ -4,7 +4,7 @@
 
 ### Repel rewards
 When an enemy is Repelled (Zeal reaches 0), rewards trigger immediately:
-- XP awarded to the player who dealt the decisive sap
+- Decisive sap player gains full XP, all others gain 1 XP (trickle)
 - Well cards dropped by elites are immediately available
   to add to any hero's deck
 - Buy energy rewards (if stated on enemy card) granted

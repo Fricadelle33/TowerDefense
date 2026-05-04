@@ -17,7 +17,7 @@ This tower defense heavily relies on combo mechanics to defeat waves of increasi
 - Video games: Balatro, Black Jacket, Monster Train, Slay the Spire, Dead Cells 
 
 ### Gameplay
-Players choose an animal hero with its own starting deck, favorite terrain(s), mechanics, etc. To face ever bigger enemies, they can buy cards from the market and unlock new cards – shared or player-specific – by completing contracts or repelling elite mobs.
+Players choose an animal hero with its own starting deck, favorite terrain(s), mechanics, etc. To face ever bigger enemies, they can buy cards from the market and unlock new cards – shared or player-specific – by completing contracts or repelling elite enemies.
 
 To discard is to sow, to play is to reap. To play cards will cost.
 

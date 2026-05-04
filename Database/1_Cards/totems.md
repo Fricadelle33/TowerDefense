@@ -52,6 +52,7 @@ After 2 Bury: [ T ][ T ][ T ]             capacity: 3
 | **Conditional** | Board state condition met | Rewards reading the board and playing around it |
 | **Conversion** | Output type redirected | Transforms what a hero does, not just how much |
 | **Resonance** | Another player's action this turn | Cooperative engine — two heroes synergizing |
+| **Resource** | Permanent, always active | Changes the economics of play — build faster, build more |
 
 ---
 
@@ -62,8 +63,8 @@ name: Venom Idol
 type: totem
 element: water
 effect_type: poison
-totem_type: threshold       # threshold | conditional | conversion | resonance
-trigger: combo ≥ 4          # the condition that activates the totem
+totem_type: threshold       # threshold | conditional | conversion | resonance | resource
+trigger: combo ≥ 4          # omit for resource totems — always active
 effect: >
   Also apply Poison equal to (combo − 3) to target enemy.
 awarded_by:
@@ -137,6 +138,18 @@ note: >
 tags: [water, sap, threshold]
 ```
 
+```yaml
+name: Resonant Spire
+totem_type: resource
+element: any
+effect_type: tower
+effect: All towers may fire twice per enemy turn.
+note: >
+  Doubles tower output globally. Extremely powerful —
+  award only in late scenarios or as a tier-3 contract reward.
+tags: [any, tower, resource]
+```
+
 ---
 
 ### Conditional totems
@@ -196,12 +209,12 @@ name: Deep Current
 totem_type: conversion
 element: water
 effect_type: sap
-trigger: played 3+ water cards last turn
+trigger: your first 3 cards played this turn are all water
 effect: >
-  Your first water card this turn counts as 2 for combo calculation.
+  Your next water card this turn counts as 2 for combo calculation.
 note: >
-  Turns are now connected — good play last turn feeds this turn.
-  Cascade engine. Rewards consistency over burst.
+  Cascade engine — rewards committing fully to water early in the turn.
+  No cross-turn tracking required.
 tags: [water, sap, conversion]
 ```
 
@@ -223,9 +236,73 @@ note: >
 tags: [water, air, resonance]
 ```
 
----
+### Resource totems
 
-## Enemy interactions
+Resource totems are always active — no trigger condition.
+They permanently modify the economics of play for the entire group.
+
+```yaml
+name: Tidal Foundation
+totem_type: resource
+element: water
+effect_type: footprint
+effect: All water towers cost 2 less footprint.
+note: >
+  Enables water-specialist heroes to flood the board with towers
+  without competing for footprint with teammates.
+  Synergizes directly with water-element heroes and tower-heavy builds.
+tags: [water, footprint, resource]
+```
+
+```yaml
+name: Deep Roots
+totem_type: resource
+element: any
+effect_type: footprint
+effect: The shared footprint pool increases by 3.
+note: >
+  Pure economic expansion — lets the group run more towers simultaneously.
+  No element restriction. Universally useful, never wasted.
+tags: [any, footprint, resource]
+```
+
+```yaml
+name: Trade Winds
+totem_type: resource
+element: air
+effect_type: economy
+effect: All tier-1 market cards cost 1🪙 less.
+note: >
+  Accelerates early-game deck building.
+  Pairs well with market-runner archetypes.
+tags: [air, economy, resource]
+```
+
+```yaml
+name: Ancient Cache
+totem_type: resource
+element: any
+effect_type: economy
+effect: Accessing The Burrow costs 2🪙 instead of 4🪙.
+note: >
+  Unlocks hero development at half price.
+  Rewards heroes who invest in their Burrow deck.
+tags: [any, burrow, resource]
+```
+
+```yaml
+name: Fertile Ground
+totem_type: resource
+element: ground
+effect_type: economy
+effect: Dismiss grants +5🪙 instead of +3🪙.
+note: >
+  Makes Dismiss a viable economic strategy rather than a desperate move.
+  Pairs well with market-runner and discard-engine archetypes.
+tags: [ground, economy, resource]
+```
+
+---
 
 ### Silence — Elites
 Elites may carry a `silence_totem` ability on their card.

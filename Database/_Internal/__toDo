@@ -1,0 +1,89 @@
+# Tower Defense — Open Tasks
+*Last reviewed: 2026-05-04 — full pass across all files*
+
+---
+
+## Mechanics — Undefined
+
+- [ ] **Market composition by player count** — `market.md`: "TBD". Blocker for scenario writing.
+
+---
+
+## Content — Empty or stub
+
+- [ ] **`enemies-standard.md`** — template missing, zero content. Write template first,
+  then at least 3–5 standard enemies for wave 1 playtesting.
+
+- [ ] **`enemies-elite.md`** — Oil Baron template only. No actual named elites.
+  Write at least 2 elites for scenario design.
+
+- [ ] **All mat quadrants except Q1A** — `mat.md` has 7 quadrant stubs with no name,
+  terrain, entry/exit points, or passive. Needs full pass once board layout is decided.
+
+- [ ] **All hero market cards** — no actual market cards written for any tier.
+
+- [ ] **All Fairy Well cards** — `fairy-well.md` defines the mechanic but contains zero cards.
+
+- [ ] **Hero skills — all TBD** — Croc's `Swamp Breath` (L1) and `Tampa Roll` (L2) undefined.
+
+- [ ] **Hero market cards — all TBD** — `hero-croc.md` has 5 TBD slugs in `hero_market.deck`.
+
+- [ ] **Burrow cards — slugs without definitions** — `hero-croc.md` names 4 burrow cards
+  (`swamp-tactics`, `river-cunning`, `croc-monsieur`, `apex-predator`) but none are defined.
+
+- [ ] **No actual scenarios written** — Introduction stub is empty.
+  Write at least the Introduction scenario with wave definitions before playtesting.
+
+- [ ] **No actual tower cards written** — `towers.md` template only (Venomous Fern).
+  Need at least 2–3 towers for playtesting footprint balance.
+
+- [ ] **`game-setup.md` incomplete** — missing: hero market draw procedure, contract
+  deck setup, enemy deck prep order, first player determination, totem zone setup.
+
+- [ ] **`hex-tiles.md` minimal** — only Straight Path defined. Needs curve, Y-split,
+  entry, exit tiles at minimum.
+
+- [ ] **`trad-fr.md`** — only one entry. Expand alongside card writing.
+
+---
+
+## Minor — Fix before print
+
+- [ ] **Introduction scenario** — `scenarios.md`: only `name: introduction`. Fill in
+  at minimum: quadrants, wave count, market setup.
+
+---
+
+## Agent testing targets (when cards exist)
+
+### Agents needed
+- 1 Creative agent
+- 1 Rule validator
+- 1 Adversarial agent
+- 1 Exploiter: bending rules to find OP combos
+- 1 "Casual" player: is it fun?
+
+### Simulation targets
+- Average turn length (cards played per turn)
+- Loop frequency at different draw card densities
+- Which specific card combinations create infinite turns (loop-risk)
+- Footprint pool sizing (does 15 feel restrictive or too generous?)
+- XP curve: can a hero reach level 3 in a 3-wave scenario?
+- Combo formula: average Sap output per tier vs. enemy Zeal pools
+- Totem acquisition rate: can the group realistically fill 5 slots by scenario end?
+- Prism Idol (loop-risk:true): does ×3 multiplier trivialize late waves?
+- Trickle XP: does it slow DPS heroes appropriately?
+- Emboldened pressure: enough without being unfair?
+- Corrupted: counters poison without shutting down poison builds?
+
+---
+
+## Draft card effects (parking lot)
+
+~~~yaml
+effect: Reveal the top card of your deck. If it shares your element, draw it.
+effect: Reveal your hand. For each water card revealed, Sap 1.
+
+on_discard: If combo ≥ 3 → draw 1 card.     # conditional draw
+on_discard: Draw 1 card, lose 2 buy energy.  # draw with a cost
+~~~

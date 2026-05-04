@@ -86,6 +86,8 @@ EFFECT MAGNITUDE =
 (relevant totem bonus for E)
 ```
 
+> Totem types, triggers, and the full totem rules are defined in `1_Cards/totems.md`.
+
 Effect magnitude drives the hero's primary output:
 
 | effect_type | Output                               |
@@ -105,28 +107,6 @@ and totem selection.
 
 Combo resets: end of turn, or upon a combo-breaking effect.
 
-### Totems (shared)
-Totems are permanent multipliers placed in a shared central zone,
-visible and accessible to all players.
-
-- Max totems: 5 (shared across all players)
-- Totems are never in any player's deck
-- All players benefit from all active totems
-- Acquisition: contract rewards, elite repels, level-up unlocks
-
-#### Totem types
-- **Multiplier totem** — increases × factor for element E
-- **Counter totem** — counts as additional cards of element E
-
-#### Totem fields
-- `element` — which element this totem amplifies
-- `effect_type` — which output this totem multiplies
-
-#### Design intent
-Shared totems encourage element specialization across heroes,
-group negotiation on acquisition, and collective investment
-in the engine.
-
 ---
 
 ## Card fields reference
@@ -140,6 +120,7 @@ in the engine.
 | `buy_energy` | Buy energy generated when played |
 | `free_plays` | Hero attribute — cards played free before discarding |
 | `zeal` | Enemy attribute — organizational momentum pool |
+| `terrain_affinity` | Conditional modifiers based on quadrant terrain — same resolution as `status_triggers` |
 | `loop-risk` | Flag for playtesting — draw + buy energy on discard |
 
 ---

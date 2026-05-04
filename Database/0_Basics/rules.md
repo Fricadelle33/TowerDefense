@@ -7,8 +7,14 @@ their last line of defense against waves of industrial destruction.
 
 ---
 
+## Players
+2 to 4 players. Each player controls one hero for the duration of the scenario.
+
+---
+
 ## Win condition
 Survive all waves in the scenario without meeting a lose condition.
+If the scenario has a boss, the boss must be Repelled to win.
 
 ---
 
@@ -52,6 +58,11 @@ cards in hand or deck. Exhausted heroes:
 Each wave consists of repeated rounds until the wave is cleared
 or a lose condition is met.
 
+### Turn order
+
+All players can play in the order they choose, 
+but players must complete their turns before switching to the next.
+
 ### 1. Player turn
 Resolve sequentially, starting from the first player then clockwise:
 
@@ -71,20 +82,25 @@ Resolve sequentially, starting from the first player then clockwise:
 - Draw up to `hero:starting_hand_size`
 
 ### 2. Enemy turn
-Resolve in order:
+Resolve per enemy, sequentially from furthest along path to closest:
 
-**a. Advance**
-- Enemy meeples move forward along the path
-- Movement = enemy speed stat in hex tiles
+1. **Per-turn effects** — Erode N, Ravage N, Summon N, Embolden check
+2. **Status ticks**
+   - Poison: lose Zeal equal to stack count, stack count decreases by 1
+   - Burning: lose 1 Zeal, check propagation
+3. **Move** — advance speed tiles along path
 
-**b. Tile effects**
-- Resolve trap and tower effects on tiles enemies now occupy
-- Apply status triggers (poison ticks, burning, etc.)
+After all enemies have moved:
 
-**c. Enemy effects**
-- Resolve enemy attacks and abilities
-- Erode land integrity
-- Trigger `status_triggers` on affected enemies
+4. **Tower effects** — for each tower on the board:
+   - If no enemy is within attack pattern range: tower does not fire
+   - `targets: single` → fire at highest priority enemy in range
+   - `targets: AoE` → fire at all enemies in range simultaneously
+   - Apply terrain_affinity modifiers
+5. **Objective reached** — for each enemy now at the exit:
+   - Trigger on_reach_exit effect
+   - Erode current quadrant
+   - Remove meeple — no repel rewards
 
 ### 3. End of round
 - Decrement all status durations (burning, frozen, thawed)
@@ -136,8 +152,8 @@ When the wave deck is exhausted, players choose one of:
 #### Respite
 - Attempt to gain N turns before the next wave
 - **Respite test**: all players simultaneously reveal 1 card
-  from hand. If X or more cards share the same element
-  (X = TBD, scales with wave difficulty), gain N respite turns.
+  from hand. If (player_count − 1) or more cards share the same element,
+  gain N respite turns.
 - `respite_turns = floor(wave_card_count / player_count)`
   minimum: 1 if respite test passed. If respite_turns < 1, respite is impossible.
 - During respite turns: no new enemies enter the path,
@@ -157,18 +173,19 @@ Triggers after fast-forward or after respite turns expire.
 
 ---
 
-## Enemy movement
-
-Enemy follow the path based on their preference.
-If conflict, follow the shortest to objective. If conflict, follow the northest.
-
----
-
 ## End-of-scenario phase
 
-### 1. Score and rewards
-- Resolve contract completions
-- Gain scenario rewards: new cards, new contracts, etc.
+1. **Collect** the boss reward (if any)
+2. **Resolve** contract completions
+3. **Gain** scenario rewards based on completion threshold
+4. **Reset** hero XP and levels. **Discard** all totems, played cards, remaining enemies and put them back in their respective decks.
+5. **Discard** the path
+
+> XP and levels are scenario-scoped. Campaign progression is expressed through
+> permanent deck improvements: Fairy Well cards, scenario rewards, and
+> Burrow cards acquired during the run. Each scenario starts all heroes at level 1.
+
+If you'd like to pursue, replay game-setup
 
 ---
 
@@ -183,8 +200,8 @@ If conflict, follow the shortest to objective. If conflict, follow the northest.
 
 ### Enemy cards
 - **Standard** — wave filler, defined speed / Zeal / effect
-- **Elite** — named enemy, unique abilities, drops Well rewards on Repel
-- **Boss** — scenario-specific, win condition tied to Repelling (TBD)
+- **Elite** — named enemy, unique abilities, can drops Well rewards on Repel
+- **Boss** — scenario-specific Elite, win condition tied to Repelling (TBD)
 
 ---
 

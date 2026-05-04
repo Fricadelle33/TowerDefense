@@ -24,9 +24,10 @@ contracts:
 ```
 
 - No contracts are visible at scenario start
-- Each wave cleared reveals 1 contract from the deck
+- If the contract list is empty, each wave cleared reveals 1 contract from the deck
 - Completing a contract immediately reveals 1 more
 - The chain continues until the deck is exhausted
+- The last contract will often be a high risk high reward
 - Contracts are **opt-in** — the group decides whether to attempt each one
 
 ---
@@ -38,7 +39,7 @@ When a contract is revealed, the group may:
 - **Decline** — ignore the contract. No reward, no curse, no chain reveal.
 
 Accepting is always a risk/reward decision. Declining is always an opportunity cost.
-
+In the rare event that a contract cannot be executed with the current hero composition, discard and draw a new one. 
 ---
 
 ## Contract tiers
@@ -213,7 +214,7 @@ chain: true
 
 curse:
   trigger: accepted and obj-1 not met by wave-end
-  effect: Silence 2 on a totem of the enemy's choice
+  effect: Silence 2 on a totem of the group's choice
   flavor: >
     Discord weakens the land's voice.
 ```
@@ -249,7 +250,7 @@ curse:
 ---
 
 ```yaml
-name: contract:deathmatch-trigger
+name: contract:unmatched-trigger
 flavor: >
   One shot. All or nothing.
 category: hero
@@ -259,8 +260,8 @@ difficulty: 3
 
 objectives:
   - id: obj-1
-    description: Trigger Deathmatch successfully (all elements revealed)
-    condition: skill:deathmatch:success = true
+    description: Trigger Unmatched successfully (all elements revealed)
+    condition: skill:unmatched:success = true
 
 rewards:
   - objectives_met: 1

@@ -74,6 +74,12 @@ Silenced towers remain on the board and resume functioning
 when the silence expires or is lifted.
 Silence duration is defined by the effect that caused it.
 
+**Banished** — a tower permanently removed from the board for the remainder of the scenario.
+Banished towers do not return to any deck — they are out of the game until the next scenario.
+Banishing is triggered voluntarily during the end-of-turn placement phase to free footprint
+for a new tower. Multiple towers may be Banished simultaneously to accommodate a higher
+footprint cost. The freed footprint is immediately available.
+
 ---
 
 ## Totem states
@@ -91,6 +97,14 @@ automatically when silence expires unless reapplied.
 ---
 
 ## Enemy statuses
+
+**Frozen** — enemy speed is reduced to 0 for 1 turn. The enemy does not move.
+Transitions to Thawed at the end of that turn.
+Triggered by any effect that applies Freeze.
+If Burning is applied while Frozen: Shatter — remove Frozen, deal 2× Zeal damage.
+
+**Thawed** — vulnerability state following Frozen. Lasts 1 turn.
+Action cards may declare `if thawed` effects that trigger bonus output against this enemy.
 
 **Emboldened** — enemy status triggered when Zeal ≤ 25% of max,
 or when an adjacent enemy is Repelled this turn.
@@ -140,18 +154,21 @@ cooldown:
 
 Card effects use terse verb + number notation:
 
-| Notation      | Meaning                                                     |
-|:--------------|:-----------------------------------------------------       |
-| Sap N         | Reduce target enemy Zeal by N                               |
-| Ravage N      | Reduce global resilience by N permanently.                  |
-| Erode N       | Reduce land integrity by N                                  |
-| Poison N      | Apply N poison stacks to target                             |
-| Push N        | Move target N tiles back along the path                     |
-| Restore N     | Restore N land integrity                                    |
-| N🪙           | Generate N buy energy                                       |
-| Silence N     | Silence target tower for N turns                            |
-| Summon N      | Reveal the next N cards in the wave deck immediately        |
-| Embolden N    | Gain N Zeal at end of turn if no Sap was applied this turn  |
-
+| Notation      | Meaning                                                             |
+|:--------------|:--------------------------------------------------------------------|
+| Sap N         | Reduce target enemy Zeal by N                                       |
+| Slow N        | Reduce target enemy speed by N this turn                            |
+| Freeze        | Reduce target enemy speed to 0 this turn. Transitions to Thawed.   |
+| Ravage N      | Reduce global resilience by N permanently                           |
+| Erode N       | Place N desolation tokens on the current quadrant                   |
+| Poison N      | Apply N poison stacks to target                                     |
+| Push N        | Move target N tiles back along the path                             |
+| Restore N     | Restore N land integrity                                            |
+| Reinforce N   | Add N durability to target tower                                    |
+| Remove N      | Permanently remove N cards from hand or discard pile                |
+| N🪙           | Generate N buy energy                                               |
+| Silence N     | Silence target tower or totem for N turns                           |
+| Summon N      | Reveal the next N cards in the wave deck immediately                |
+| Embolden N    | Gain N Zeal at end of turn if no Sap was applied this turn          |
 
 Effects scale with combo formula unless stated otherwise.

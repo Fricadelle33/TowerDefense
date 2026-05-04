@@ -37,7 +37,19 @@ Resolved per enemy, sequentially from **furthest along path to closest**:
    - Poison: enemy loses Zeal equal to stack count, then stack count decreases by 1
    - Burning: enemy loses 1 Zeal, checks propagation to adjacent tiles
 3. **Move** — advance speed tiles along the path
-4. **Objective reached** — if enemy reaches exit this turn:
+4. **Tower Effect** — After all enemies have moved, resolve tower effects:
+  a. For each tower on the board, check if any enemy is within its `attack_pattern` range
+  b. If no enemy in range: tower does not fire this turn
+  c. If enemies in range:
+    - `targets: single` → fire at highest `priority` enemy in range
+    - `targets: AoE` → fire at all enemies in range simultaneously
+  d. Apply tower effect to target(s)
+  e. Apply terrain_affinity modifiers
+
+Towers fire once per enemy turn unless a totem or card
+effect explicitly states otherwise.
+
+5. **Objective reached** — if enemy reaches exit this turn:
    - Trigger `on_reach_exit` effect (if any)
    - Apply `erode` value to the exit quadrant
    - Remove meeple from the board

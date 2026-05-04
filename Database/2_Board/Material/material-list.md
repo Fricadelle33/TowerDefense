@@ -44,32 +44,34 @@ component:totem-board # area to store the totems
 
 ### Cards (Card stock, 63×88mm standard)
 
-| Category              | File                        | Qty  |
-| :-------------------- | :-------------------------- | :--- |
-| Hero cards            | `Heroes/`                   | TBD  |
-| Hero action cards     | `cards/cards-[hero].md`     | TBD  |
-| Shared market cards   | `cards/cards-market.md`     | TBD  |
-| Event cards           | `cards/cards-events.md`     | TBD  |
-| Standard enemy cards  | `standard-enemy-cards.md`   | TBD  |
-| Elite enemy cards     | `elite-enemies.md`          | TBD  |
-| Contract cards        | `contracts-and-scenarios.md`| TBD  |
-| Scenario cards        | `contracts-and-scenarios.md`| TBD  |
-| Secret cards          | `secrets.md`                | TBD  |
+| Category              | File                              | Qty  |
+| :-------------------- | :-------------------------------- | :--- |
+| Hero cards            | `1_Cards/Heroes/`                 | TBD  |
+| Hero action cards     | `1_Cards/Action/`                 | TBD  |
+| Shared market cards   | `1_Cards/Action/`, `1_Cards/Towers/` | TBD  |
+| Standard enemy cards  | `1_Cards/Enemies/enemies-standard.md` | TBD  |
+| Elite enemy cards     | `1_Cards/Enemies/enemies-elite.md`    | TBD  |
+| Contract cards        | `2_Board/contracts.md`            | TBD  |
+| Scenario cards        | `2_Board/scenarios.md`            | TBD  |
+| Fairy Well cards      | `1_Cards/fairy-well.md`           | TBD  |
 
 ---
 
 ### Tokens & markers (Cardboard punchout)
 
-| ID                  | Description                              | Qty |
-| :------------------ | :--------------------------------------- | :-- |
-| `token:zeal`        | Zeal tracker — enemy                     | TBD |
-| `token:poison`      | Poison counter (stacking)                | TBD |
-| `token:combo`       | Combo counter per player                 | TBD |
-| `token:slow`        | Slow debuff marker                       | TBD |
-| `token:buff`        | Generic buff marker                      | TBD |
-| `token:gold`        | Economy resource                         | TBD |
-| `token:hero-level`  | Hero level tracker (1–3 or TBD)          | TBD |
-| `token:wave`        | Wave progress tracker                    | TBD |
+| ID                    | Description                              | Qty |
+| :-------------------- | :--------------------------------------- | :-- |
+| `token:zeal`          | Zeal tracker — enemy                     | TBD |
+| `token:desolation`    | Desolation token — placed on quadrant by Erode | TBD |
+| `token:poison`        | Poison counter (stacking)                | TBD |
+| `token:combo`         | Combo counter per player                 | TBD |
+| `token:frozen`        | Frozen status marker (transitions to Thawed) | TBD |
+| `token:thawed`        | Thawed vulnerability marker (1 turn)     | TBD |
+| `token:burning`       | Burning status marker                    | TBD |
+| `token:shield`        | Shield tracker — enemy                   | TBD |
+| `token:silence`       | Silence marker — tower or totem          | TBD |
+| `token:hero-level`    | Hero level tracker (1–3)                 | TBD |
+| `token:wave`          | Wave progress tracker                    | TBD |
 
 ---
 

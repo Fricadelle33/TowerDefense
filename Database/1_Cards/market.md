@@ -40,6 +40,3 @@ market access and buy power.
 
 ## Market composition by player count
 TBD — to be defined once card set size is known
-
-## The Well
-The well is a deck of secrets, unlockable under certain conditions

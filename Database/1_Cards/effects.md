@@ -22,22 +22,28 @@ poisoned:
     frozen: no interaction
 
 slowed:
-  effect: Reduce speed by N
-          If speed reaches 0, enemy does not move this turn.
-  armor_piercing: yes
-  transitions_to: thawed  ignore_shield: yes
+  effect: Reduce speed by N this turn. If speed reaches 0, enemy does not move.
+  ignore_shield: yes
   stacks: no
-  duration: N turns
+  duration: 1 turn
+  note: Slow 3 reduces speed by 3. Does not transition to thawed.
+
+frozen:
+  effect: >
+    Reduce speed to 0, regardless of initial value. Enemy does not move this turn.
+    Frozen = Slow equal to the enemy's full speed stat.
+  ignore_shield: yes
   transitions_to: thawed
+  stacks: no
+  duration: 1 turn
   status_triggers:
     burning: shatter — remove frozen, sap 2× Zeal on hit
 
 thawed:
-  effect: Vulnerable — sensitive to TBD (electricity candidate)
+  effect: Vulnerable. Action cards may check `if thawed` to trigger bonus effects.
   stacks: no
   duration: 1 turn
   transitions_to: none
-  note: vulnerability window for future element interaction
 
 burning:
   effect: Lose 1 Zeal at start of turn
@@ -59,9 +65,9 @@ burning:
 
 ```yaml
 thriving:
-  effect: TBD — suggestion: regenerate 2 Zeal per turn
-  stacks: TBD
-  triggered_by: TBD
+  effect: Gain 2 Zeal per turn
+  stacks: no
+  triggered_by: n/a
   note: >
     Double meaning intentional — a Thriving enemy is a corporation
     doing well. Fits the industrial lore perfectly.
