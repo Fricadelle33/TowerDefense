@@ -8,20 +8,23 @@
 name: Oil Baron
 type: elite                   # standard | elite | boss
 difficulty_rating: 3          # back office — informs scenario design and rewards
+
 zeal: 12
 speed: 2                      # tiles moved per enemy turn
 shield: 3                     # absorbs Sap before Zeal is affected
+flying: false
 
 path_preference: northbound   # northbound | southbound | eastbound | westbound
 
-on_shield_break:
+on_spawn: Summon 1        # triggered once when enemy enters the path
+
+on_turn: Erode 1          # triggered every enemy turn (step 1 of turn order)
+
+on_shield_break:           # triggered when shield reaches 0
   if_tower: Silence 2
   if_hero: Erode 1
 
-effect: Summon 1.
-
-per_turn:
-  effect: Erode 1             # omit if no per-turn effect
+on_reach_exit: Erode 3     # triggered when enemy reaches path exit
 
 status_triggers:
   poisoned: Sap 6 instead
@@ -37,7 +40,7 @@ terrain_affinity:
 
 reward:
   xp: 3
-  buy_energy: 2🪙
+  buy_energy: 2
   well_card: fairy_well:N     # omit for standard enemies
 ```
 
@@ -57,6 +60,7 @@ difficulty_rating: 5
 zeal: 30
 speed: 1
 shield: 5
+flying: false
 
 path_preference: northbound
 
@@ -66,6 +70,12 @@ path_preference: northbound
 on_shield_break:
   effect: Bury totem:any      # group chooses which totem is buried
 
+on_spawn: Summon 1        # triggered once when enemy enters the path
+
+on_turn: Erode 1            # triggered every enemy turn (step 1 of turn order)
+
+on_reach_exit: Lose the game     # No need to be explicit on the card -- This is by the rules
+
 # Phase triggers — fire once when Zeal crosses the threshold (not repeatable)
 phases:
   - at_zeal: 20               # triggers when Zeal drops to 20 or below
@@ -74,9 +84,6 @@ phases:
     effect: >
       Bury totem:any. Ravage 1.
       All towers on Q1 are Silenced for 2 turns.
-
-per_turn:
-  effect: Erode 1
 
 status_triggers:
   poisoned: immune            # bosses may be immune to specific statuses
@@ -99,6 +106,7 @@ reward:
 ```
 
 ### Boss design rules
+
 - One boss per scenario, always the last card in the final wave deck
 - `phases` trigger once only — crossing the threshold a second time does nothing
 - `Bury` is exclusive to bosses — elites can only Silence totems
