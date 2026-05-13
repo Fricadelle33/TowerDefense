@@ -49,7 +49,11 @@ type: action
 element: none
 tags: [ ]
 effect: >
+<<<<<<< HEAD
   Protect 1.
+=======
+  Barrier 1.
+>>>>>>> ab33289 (cards(design): created first hero deck and burrow)
 status_triggers:
   poisoned: You can Poison 2 instead.
 ~~~

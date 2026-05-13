@@ -107,11 +107,18 @@ Slow N       — reduce target enemy speed by N this turn (0 = no movement)
 Freeze       — Slow equal to target's full speed (transitions to Thawed)
 Erode N      — place N desolation tokens on current quadrant
 Ravage N     — reduce global resilience by N permanently
+<<<<<<< HEAD
 Poison N     — apply N poison stacks to target (each tick: 1 Zeal, flat)
 Burn         — apply burning status (1 Zeal/turn, 1 turn unless reapplied)
 Push N       — move target N tiles back along path
 Restore N    — restore N land integrity
 Reinforce N  — add N durability to target tower
+=======
+Poison N     — apply N poison stacks to target (N ticks = always 1 Zeal, flat)
+Burn         — apply burning status (1 Zeal/turn, 1 turn unless reapplied)
+Push N       — move target N tiles back along path
+Restore N    — restore N land integrity
+>>>>>>> ab33289 (cards(design): created first hero deck and burrow)
 Barrier N    — place N barrier tokens on a quadrant (absorbs Erode 1:1)
 Silence N    — silence target tower/totem for N turns
 Remove N     — permanently remove N cards from hand/discard
