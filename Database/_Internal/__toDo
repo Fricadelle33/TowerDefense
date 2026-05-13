@@ -2,6 +2,15 @@
 
 Last reviewed *2026-05-04* — full pass across all files
 
+## Claude: Ignore this section — For Copy-pasta purposes
+
+🪙
+🌀
+→
+≤ ≥ # Option + < >
+`swamp, jungle, mountains, plains`
+`water, leaves, ground, air`
+
 ---
 
 ## Mechanics — Undefined
@@ -57,14 +66,6 @@ Last reviewed *2026-05-04* — full pass across all files
 
 ## Agent testing targets (when cards exist)
 
-### Agents needed
-
-- 1 Creative agent
-- 1 Rule validator
-- 1 Adversarial agent
-- 1 Exploiter: bending rules to find OP combos
-- 1 "Casual" player: is it fun?
-
 ### Simulation targets
 
 - Average turn length (cards played per turn)
@@ -89,4 +90,34 @@ effect: Reveal your hand. For each water card revealed, Sap 1.
 
 on_discard: If combo ≥ 3 → draw 1 card.     # conditional draw
 on_discard: Draw 1 card, lose 2 buy energy.  # draw with a cost
+
+# Slow scales with duration remaining — more stacks = longer slow
+status_triggers:
+  poisoned: Slow equal to stack count
+
+# Push scales with duration — more stacks = bigger displacement  
+status_triggers:
+  poisoned: Push 1 per 2 stacks
+
+# Unlock scales with duration — high stacks gate powerful effects
+status_triggers:
+  poisoned: If stack count ≥ 4 → Draw 1
 ~~~
+
+## Totem ideas
+
+```yaml
+trigger: Single-enemy poison ≥ 4
+trigger: All four elements played on a single turn 
+```
+
+## Elite ideas 
+
+```yaml
+name: Toxic Spill
+type: elite
+on_turn: Erode 1          # always erodes regardless
+status_triggers:
+  poisoned: Erode 1 additional on current quadrant per tick
+meta: Counter to Croc's meta
+```

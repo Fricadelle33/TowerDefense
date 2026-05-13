@@ -1,4 +1,5 @@
-Database.zip
+**/*.zip
 VsCode/
 **/.DS_Store
 **/*.pdf
+**/*.swp

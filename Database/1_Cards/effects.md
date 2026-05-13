@@ -1,22 +1,24 @@
 # Effects and Statuses
 
 ## General rules on card effects
+
 Card effects must be applied fully, in up-to-bottom, left-to-right order.
 X cards must use all X resources available, but X can be zero.
-
 
 ## Player-applicable statuses
 
 ```yaml
 poisoned:
   effect: >
-    At start of enemy turn: lose Zeal equal to current stack count,
-    then reduce stack count by 1. Expires at 0 stacks.
+    After tower effects fire: lose 1 Zeal, stack count decreases by 1.
+    Expires when stack count reaches 0.
   stacks: yes
-  ignore_shield: yes
+  tick_zeal_loss: 1         # always flat 1, regardless of stack count
   duration: equals stack count in turns
-  cured_by: TBD
-  zeal_curve: "3 stacks → 3+2+1 = 6 total Zeal sapped over 3 turns"
+  zeal_curve: "5 stacks → 1 Zeal lost per turn × 5 turns = 5 total"
+  primary_value: >
+    Duration of poisoned state for status_trigger exploitation,
+    not raw Zeal damage.
   status_triggers:
     burning: no interaction
     frozen: no interaction
@@ -46,11 +48,12 @@ thawed:
   transitions_to: none
 
 burning:
-  effect: Lose 1 Zeal at start of turn
+  effect: >
+    After tower effects fire: lose 1 Zeal.
+    Propagate to `floor(fire icons played / 3)` adjacent tiles
   ignore_shield: no
   stacks: no
   duration: 1 turn — extinguishes unless reapplied
-  propagation: spreads to floor(fire icons played / 3) adjacent tiles
   note: >
     Short duration forces players to focus on burning enemies
     to maximize the Zeal-sap window and chain propagation
@@ -96,4 +99,3 @@ emboldened:
     A single Sap of any amount negates the Zeal gain entirely.
     Ignoring an Emboldened enemy is always a losing trade.
 ```
-

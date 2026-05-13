@@ -2,9 +2,9 @@
 
 ## Read order
 
-1. CLAUDE_CODE_CONTEXT.md (this file / already read)
-2. Agents/AGENT_[relevant].md
-3. Database/ files relevant to the task
+1. `.claude/claude-context.md` (this file / already read)
+2. `.claude/agents/[relevant].md`
+3. `Database/` files relevant to the task
 
 ## Project overview
 
@@ -21,16 +21,60 @@ eventual physical printing.
 ## Project structure
 
 ```text
+.claude/
+  claude-context.md       # this file
+  agents/
+    strict_validator.md
+    market_supervisor.md
+    creative_player.md
+    adversarial_gm.md
+    rotating_player.md
+
 Database/
-  0_Basics/           # Core rules, economy, setup
-  1_Cards/            # All card types and templates
-    Action/           # Player action cards
-    Enemies/          # Enemy cards and movement rules
-    Heroes/           # Hero cards and mechanics
-    Towers/           # Tower cards and placement rules
-  2_Board/            # Board components, mats, scenarios, contracts
-    Material/         # Physical component specs
-  3_Misc/             # Glossary, translations
+  _Internal/
+    __toDo                # authoritative open-issues list
+  0_Basics/
+    0-getting-started.md
+    rules.md
+    economy-and-engine.md
+    game-setup.md
+    lore.md
+  1_Cards/
+    effects.md            # status effect definitions
+    effects-vocabulary.md # canonical card-writing language reference
+    market.md             # market mechanics (shared market)
+    fairy-well.md         # The Fairy Well deck mechanics
+    Action/
+      t1-action-cards.md
+      t2-action-cards.md
+    Enemies/
+      enemies-standard.md
+      enemies-elite.md
+      enemies-movement.md
+    Heroes/
+      hero-mechanics.md
+      0_Croc/
+        hero-croc.md
+        hero-croc-cards.md
+        hero-croc-burrow.md
+    Towers/
+      towers.md
+      tower-placement.md
+      tower-attacks.md
+      tower-attack-patterns.svg
+    Totems/
+      totems-mechanics.md
+      totems-cards.md
+  2_Board/
+    contracts.md
+    scenarios.md
+    Material/
+      mat.md
+      hex-tiles.md
+      material-list.md
+  3_Misc/
+    glossary.md
+    trad-fr.md
 ```
 
 ## Design philosophy
@@ -58,20 +102,31 @@ Database/
 ## Card effect shorthand
 
 ```text
-Sap N       — reduce enemy Zeal by N
-Erode N     — place N desolation tokens on current quadrant
-Ravage N    — reduce global resilience by N permanently
-Poison N    — apply N poison stacks to target
-Push N      — move target N tiles back along path
-Restore N   — restore N land integrity
-Reinforce N — add N durability to tower
-Banish      — remove a tower from the board for the remainder of the scenario (not Bury — totems only)
-Silence N   — silence target tower/totem for N turns
-Remove N    — permanently remove N cards from hand/discard
-Summon N    — reveal next N cards in wave deck immediately
-Embolden N  — gain N Zeal at end of turn if no Sap applied
-N🪙         — generate N buy energy
+Sap N        — reduce enemy Zeal by N
+Slow N       — reduce target enemy speed by N this turn (0 = no movement)
+Freeze       — Slow equal to target's full speed (transitions to Thawed)
+Erode N      — place N desolation tokens on current quadrant
+Ravage N     — reduce global resilience by N permanently
+Poison N     — apply N poison stacks to target (each tick: 1 Zeal, flat)
+Burn         — apply burning status (1 Zeal/turn, 1 turn unless reapplied)
+Push N       — move target N tiles back along path
+Restore N    — restore N land integrity
+Reinforce N  — add N durability to target tower
+Barrier N    — place N barrier tokens on a quadrant (absorbs Erode 1:1)
+Silence N    — silence target tower/totem for N turns
+Remove N     — permanently remove N cards from hand/discard
+Summon N     — reveal next N cards in wave deck immediately
+Embolden N   — gain N Zeal at end of turn if no Sap was applied this turn
+Banish       — voluntary tower swap by player (frees footprint), or rare
+               boss/elite ability removing a tower for the scenario
+Bury         — permanently reduce totem capacity by 1 (bosses only)
+N🪙          — generate N buy energy
+N🌀          — value scales with combo (e.g. Sap 3🌀 = Sap 3 × combo)
 ```
+
+The `🌀` symbol may only follow Sap, Poison, Push, Burn, Slow, Reveal,
+Restore, Barrier. It must NOT follow 🪙, Draw, Remove, XP, Silence,
+Embolden, Bury, Summon, or Ravage.
 
 ---
 
@@ -95,12 +150,25 @@ N🪙         — generate N buy energy
 - Off-element cards must be discarded (no combo effect, no on_discard combo)
 - EFFECT MAGNITUDE = (cards of element E played) × (totem bonus)
 - Discarded cards do NOT affect the combo counter
+- Purged cards do NOT affect the combo counter (combo stays intact)
 
 ### Discard resolution order
 
-1. on_discard effect triggers
-2. Combo counter checked (element match with previous played card)
-3. Player may play 1 card from hand
+When a card is **discarded**:
+1. `on_discard` effect triggers (if any)
+2. Player may play 1 card from hand
+
+> Combo counter is NOT incremented on discard.
+
+When a card is **played**:
+1. Pay cost via `free_plays` counter or a discard
+2. `effect` triggers
+3. Combo counter checked and incremented (if element matches E)
+4. `buy_energy` generated (if stated on card)
+
+When a card is **purged** (end of turn or card effect):
+1. Card goes to discard pile
+2. No effects trigger, combo counter stays intact
 
 ### Card actions
 
@@ -115,15 +183,17 @@ N🪙         — generate N buy energy
    a. Play phase (discard/play/buy)
    b. Dismiss (optional)
    c. End of turn (purge, draw to starting_hand_size)
-2. Enemy turn
-   Per enemy, furthest first:
+2. Enemy turn — per enemy, furthest first:
    1. Per-turn effects (Erode, Ravage, Summon, Embolden check)
-   2. Status ticks (poison decay, burning tick)
-   3. Move (speed tiles along path)
-   After all enemies have moved:
-   4. Tower effects fire (single: highest priority target; AoE: all in range)
+   2. Move (speed tiles along path)
+   3. Tower effects fire (single: highest priority target; AoE: all in range)
+   4. Status ticks (poison: lose 1 Zeal, decrement stack; burning: lose 1 Zeal)
    5. Objective reached check
 3. End of round (status decrements, emboldened check, lose condition check)
+
+> Towers fire AFTER enemies move, BEFORE status ticks.
+> This lets freshly applied poison trigger `status_triggers` on towers
+> before any decay.
 
 ### Wave structure
 
@@ -138,22 +208,27 @@ N🪙         — generate N buy energy
 - Tracked per quadrant via desolation tokens
 - Erode N: place N tokens on current quadrant
 - Ravage N: reduce all quadrant resilience by N globally (permanent)
+- Barrier N: place N barrier tokens on a quadrant. Absorbs Erode 1:1.
+  Discarded at end of next enemy turn. Does NOT block Ravage.
 - Ravaged quadrant: all towers permanently Silenced, no more tokens placed
 - Game over: all active quadrants Ravaged
 
 ### Towers
 
-- Played to hand during player turn, placed on board at end of turn
+- Played from hand during player turn (costs 1 discard = 1 play energy)
+- Held in play zone for the duration of the player turn — sets/matches combo element
+- Placed on board at end of player turn (free placement)
 - Shared footprint pool (scenario-defined, default 15)
 - Fire once per enemy turn at highest-priority target in attack_pattern range
 - AoE towers hit all enemies in range simultaneously
-- Cannot be destroyed — only Silenced
+- Cannot be destroyed by standard means — only Silenced
+- Banish: rare boss/elite ability OR voluntary player swap when at footprint capacity
 - Terrain affinity resolves same as status_triggers
 
 ### Totems (shared)
 
 - 5 slots, shared by all players, never in any deck
-- Won via contracts, elite repels, level-up unlocks
+- Won via contracts, elite repels, level-up unlocks (never bought)
 - Types: threshold | conditional | conversion | resonance | resource
 - Balatro-style: react to events, never modify cards directly
 - Elites can Silence totems; only Bosses can Bury totems
@@ -169,6 +244,16 @@ N🪙         — generate N buy energy
   - enemy difficulty = hero level - 1: 1 XP (trickle)
   - enemy difficulty < hero level - 1: 0 XP
 
+### The Burrow (hero progression deck)
+
+- Per-hero face-down deck of powerful cards
+- The Burrow IS the hero market — there is no separate hero_market
+- Access: once per wave, only on a turn where the hero's draw deck is empty
+- Procedure: reveal top 2 cards → choose 1 → pay its individual cost
+- If you cannot afford either: return both face-down to top of Burrow
+  (you now know what's coming next access)
+- Burrow is never reshuffled after game setup — order is permanent
+
 ### The Fairy Well
 
 - Numbered deck, never shuffled, never peeked at
@@ -176,6 +261,12 @@ N🪙         — generate N buy energy
 - Revealed collectively after wave completion
 - Card types: action (one hero takes it), tower (one hero takes it),
   totem (group chooses or discard pile), elite (placed at bottom of next wave)
+
+### Markets
+
+- **Shared market**: drafted pool of cards available to all heroes
+- Cards cost buy energy (🪙)
+- Refreshes on Dismiss
 
 ---
 
@@ -188,9 +279,9 @@ name: slug
 type: action
 element: water          # water | leaves | ground | air
 tier: 1                 # 1 | 2 | 3
-cost: 2                 # buy energy cost to acquire
+cost: 2                 # buy energy cost to acquire from market
 tags: [combo, poison]
-targets: single         # single | AoE | chain
+target_type: single     # single | AoE — multiplicity per affected tile
 target_filter: all      # all | ground | aerial
 effect: Sap 3.
 on_discard: 1🪙. If combo ≥ 2 → Poison 1 nearest enemy.
@@ -202,6 +293,9 @@ terrain_affinity:
 loop-risk: false
 ```
 
+> Action cards do NOT use `attack_pattern`. The effect text describes
+> the spatial footprint. Patterns are tower-only.
+
 ### Tower card
 
 ```yaml
@@ -212,11 +306,13 @@ tier: [1, 2]
 cost: 4
 terrain: [swamp, forest]
 tags: [poison, zone]
-attack_pattern: pattern:ring  # pattern:ring | pattern:cone | pattern:line | pattern:diagonal | pattern:aura | pattern:cross
 requires_facing: false
-targets: AoE            # single | AoE | N (numeric cap)
-target_filter: ground   # ground | aerial | all
-priority: first         # first | last | strongest | weakest | fastest | tagged
+attack_pattern: pattern:ring   # pattern:single-tile | pattern:ring |
+                               # pattern:cone | pattern:line | pattern:diagonal |
+                               # pattern:aura | pattern:cross
+target_type: AoE               # single | AoE | N (numeric cap)
+target_filter: ground          # ground | aerial | all
+priority: first                # first | last | strongest | weakest | fastest | tagged
 status_triggers:
   poisoned: Poison 2 instead of Poison 1
 terrain_affinity:
@@ -230,6 +326,10 @@ levels:
     effect: Poison 2 all enemies on affected tiles per turn.
 ```
 
+> Pattern definitions (in `tower-attacks.md`) carry `tile_coverage`
+> (spatial footprint) and `requires_facing`. The card carries
+> `target_type` (per-tile multiplicity) and `target_filter`.
+
 ### Enemy card (standard/elite)
 
 ```yaml
@@ -239,14 +339,13 @@ difficulty_rating: 3    # back office, 1-5
 zeal: 12
 speed: 2
 shield: 3
-path_preference: northbound
-on_shield_break:
+path_preference: northbound   # northbound | southbound | eastbound | westbound
+on_spawn: Summon 1            # triggered once when enemy enters the path
+on_turn: Erode 1              # triggered every enemy turn (step 1)
+on_reach_exit: Erode 3        # triggered when enemy reaches path exit
+on_shield_break:              # triggered when shield reaches 0
   if_tower: Silence 2
   if_hero: Erode 1
-effect: Summon 1.
-per_turn:
-  effect: Erode 1
-erode: 3                # on reaching objective
 status_triggers:
   poisoned: Sap 6 instead
   burning: lose 1 shield permanently
@@ -260,7 +359,7 @@ terrain_affinity:
 reward:
   xp: 3
   buy_energy: 2🪙
-  well_card: fairy_well:N   # omit for standard enemies
+  well_card: fairy_well:N     # omit for standard enemies
 ```
 
 ### Hero card
@@ -300,17 +399,19 @@ skills:
     effect: TBD
 starting_deck:
   - card:slug
-hero_market:
-  deck: [card:slug]
-  draw: 2
-  choose: 1
-  shuffles: once_per_scenario
 the_burrow:
-  access_cost: 4
-  deck: [card:slug]
+  deck:
+    - card: card:slug
+      cost: 4
+    - card: card:slug
+      cost: 6
 campaign_additions: []
 starting_totem: null
 ```
+
+> The Burrow IS the hero market — there is no `hero_market` field.
+> Each Burrow card has its own individual cost.
+> Burrow access requires once-per-wave + empty draw deck (see mechanics).
 
 ### Totem card
 
@@ -402,7 +503,7 @@ waves: 3
 
 ## Known open issues (parking lot)
 
-*Authoritative list is `__toDo`. This is a summary of what's still open.*
+*Authoritative list is `Database/_Internal/__toDo`. This is a summary.*
 
 ### Mechanics — undefined
 
@@ -412,22 +513,45 @@ waves: 3
 
 - [ ] `enemies-standard.md` — no template, no content
 - [ ] `enemies-elite.md` — Oil Baron + The Conglomerate (boss) only; no additional elites
-- [ ] Mat quadrants Q2–Q4 — structurally present in `mat.md` but no `quadrant:` identifiers or terrain defined (Q1A and Q1B complete)
-- [ ] Hero content — Croc O'Dill has 2/3 skills TBD, 4/5 hero market cards TBD; no other heroes exist
-- [ ] Scenarios — Introduction scenario is a bare `name:` placeholder; no quadrants, waves, market setup, rewards
-- [ ] Tower and enemy cards — 1 tower (Venomous Fern) and a handful of action cards exist; no dedicated standard enemy cards
+- [ ] Mat quadrants Q2–Q4 — Q1A and Q1B complete; Q2–Q4 lack identifiers and terrain
+- [ ] Hero content — Croc O'Dill has 2/3 skills TBD, Burrow partially filled; no other heroes exist
+- [ ] Scenarios — Introduction scenario is a bare `name:` placeholder
+- [ ] Tower and enemy cards — 1 tower (Venomous Fern) and a handful of action cards exist
 
 ### Minor
 
-- [ ] `trad-fr.md` — 1 entry (`slowed: entravé`); expand alongside card writing
+- [ ] `trad-fr.md` — 1 entry; expand alongside card writing
 
 ---
 
-## Playtesting targets for Claude Code agents
+## Agents
 
-### Loop detection
+Five specialized agents live in `.claude/agents/`. Each runs in an isolated
+context window. Invoke explicitly or rely on automatic delegation when the
+agent's `description` matches the task.
 
-Run simulated turns maximizing `loop-risk: true` cards and report:
+| Agent | Role |
+|---|---|
+| `strict_validator` | YAML compliance, required fields, value ranges, vocabulary, cross-references |
+| `market_supervisor` | Genre failure modes for TD, deck-builder, roguelike-deckbuilder spaces |
+| `adversarial_gm` | Plays enemies optimally to expose enemy design weaknesses |
+| `creative_player` | Plays heroes as a min-maxer hunting OP combos and infinite loops |
+| `rotating_player` | Cycles through 5 casual personas to test accessibility and retention |
+
+Suggested invocation order for a content review:
+
+1. `strict_validator` — catch typos before anyone reads
+2. `market_supervisor` — validate design direction
+3. `rotating_player` (Felix persona) — test teachability
+4. `adversarial_gm` — stress-test the encounter
+5. `creative_player` — find the exploits
+6. `rotating_player` (Beatrice persona) — check staying power
+
+---
+
+## Playtesting targets for agents
+
+### Loop detection (creative_player)
 
 - Average turn length (cards played per turn)
 - Frequency of infinite turns
@@ -438,15 +562,16 @@ Run simulated turns maximizing `loop-risk: true` cards and report:
 
 - Footprint pool sizing: does 15 feel restrictive or too generous?
 - XP curve: can a hero reach level 3 within a 3-wave scenario?
-- Combo formula: average damage output per tier vs. enemy Zeal pools
+- Combo formula: average Sap output per tier vs. enemy Zeal pools
 - Totem acquisition rate: does the group realistically fill 5 slots by scenario end?
 - Prism Idol (loop-risk:true): does ×3 multiplier trivialize late waves?
 
-### Enemy design validation
+### Enemy design validation (adversarial_gm)
 
 - Does the trickle XP rule slow DPS heroes appropriately?
 - Does Emboldened create enough pressure without being unfair?
 - Does Corrupted effectively counter poison builds without shutting them down?
+- Does Bury create a fun death spiral or a frustrating one?
 
 ---
 

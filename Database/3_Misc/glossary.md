@@ -12,6 +12,7 @@ enemy cards. When Zeal reaches 0, the enemy is Repelled.
 from the path. Triggers repel rewards immediately.
 
 **Repel reward** — rewards granted instantly when an enemy is Repelled:
+
 - XP awarded to the player who dealt the decisive sap
 - Well cards dropped by elites, immediately available to add to any hero's deck
 - Buy energy rewards stated on the enemy card
@@ -25,7 +26,6 @@ When land integrity reaches 0, the land is ravaged and players lose.
 **Slow N** — reduce enemy speed by N this turn.
 If speed reaches 0 or below, the enemy does not move.
 Frozen is Slow equal to the enemy's full speed stat.
-
 
 ---
 
@@ -50,11 +50,13 @@ Removed cards leave the game for this scenario.
 Removed cards are not discarded — no on_discard effects trigger.
 
 ### Usage of Reveal
+
 - Used by active skills and specific card effects
 - All players may reveal simultaneously when an effect requires it
 - Revealing does not count as a discard, play, or purge
 
 ### Example
+>
 > "All players simultaneously reveal 1 card from their hand."
 > Revealed cards remain in hand after resolution.
 
@@ -84,15 +86,14 @@ footprint cost. The freed footprint is immediately available.
 
 ## Totem states
 
-**Bury** — permanently remove 1 totem from the shared zone.
-The maximum totem capacity decreases by 1 for the remainder
-of the scenario. Buried totems cannot be recovered.
-The player group chooses which totem is buried unless
-the effect specifies otherwise.
+**Silence (totem)** — a totem that cannot trigger its effects for N turns.
+The totem remains in the zone and counts toward capacity.
+Effects resume automatically when Silence expires unless reapplied.
 
-**Silence (totem)** — a totem that cannot trigger its effects
-for N turns. The totem remains in the zone. Effects resume
-automatically when silence expires unless reapplied.
+**Bury** — permanently reduce totem capacity by 1 for the remainder of
+the scenario. The group chooses which totem is removed unless the effect
+specifies otherwise. Buried totems cannot be recovered. The zone shrinks —
+no empty slot remains.
 
 ---
 
@@ -129,6 +130,13 @@ Cannot be recovered within a scenario.
 
 ## Map status
 
+**Occupied** — a tile that already contains one or more enemy meeples.
+
+**Target tile** — the tile on which an effect is applied. The origin tile of the affected enemy or object at the moment the effect resolves.
+
+**Destination tile** — the tile an enemy or object ends up on after a movement effect resolves.
+Example: Push 1 moves an enemy from tile A1 (target) to tile A2 (destination).
+
 **Ravaged** (quadrant state) — a quadrant whose desolation tokens
 have reached its resilience threshold. All towers on a Ravaged
 quadrant are permanently Silenced for the remainder of the scenario.
@@ -158,17 +166,24 @@ Card effects use terse verb + number notation:
 |:--------------|:--------------------------------------------------------------------|
 | Sap N         | Reduce target enemy Zeal by N                                       |
 | Slow N        | Reduce target enemy speed by N this turn                            |
-| Freeze        | Reduce target enemy speed to 0 this turn. Transitions to Thawed.   |
+| Freeze        | Reduce target enemy speed to 0 this turn. Transitions to Thawed.    |
 | Ravage N      | Reduce global resilience by N permanently                           |
 | Erode N       | Place N desolation tokens on the current quadrant                   |
 | Poison N      | Apply N poison stacks to target                                     |
 | Push N        | Move target N tiles back along the path                             |
 | Restore N     | Restore N land integrity                                            |
 | Reinforce N   | Add N durability to target tower                                    |
+| Barrier N     | Place N barrier tokens on a quadrant (absorbs Erode 1:1)            |
 | Remove N      | Permanently remove N cards from hand or discard pile                |
 | N🪙           | Generate N buy energy                                               |
 | Silence N     | Silence target tower or totem for N turns                           |
-| Summon N      | Reveal the next N cards in the wave deck immediately                |
+| Summon N      | Reveal the next N cards in the wave deck immediately.               |
 | Embolden N    | Gain N Zeal at end of turn if no Sap was applied this turn          |
 
 Effects scale with combo formula unless stated otherwise.
+
+## Combo multiplier
+
+**🌀** — combo multiplier. Appended to an effect value, indicates
+the effect scales with the current combo value.
+Example: "Sap 3🌀" means "Sap (3 × combo)".

@@ -10,11 +10,21 @@
 ---
 
 ```yaml
+id: pattern:single-tile
+icon: ⬡
+name: Single Tile
+requires_facing: false 
+tile_coverage: 1 (per pattern)
+description: Affects the targeted tile only.
+use_cases: [high damage output, clearing swarms of summoners]
+```
+
+```yaml
 id: pattern:ring
 icon: ◈
 name: Ring-6
 requires_facing: false
-targets: 6
+tile_coverage: 6
 description: Affects all 6 adjacent hex tiles simultaneously. Omnidirectional.
 use_cases: [poison aura, slow field, buff zone]
 ```
@@ -26,7 +36,7 @@ id: pattern:cone
 icon: ▲
 name: Cone
 requires_facing: true
-targets: 3
+tile_coverage: 3
 description: Affects 3 tiles in the tower's facing direction. Rotatable via yellow-edge tile.
 use_cases: [directional damage, knockback, fire breath]
 ```
@@ -38,7 +48,7 @@ id: pattern:line
 icon: ━
 name: Line
 requires_facing: true
-targets: 3
+tile_coverage: 3
 description: Pierces through tiles in a straight line (up to 3 tiles deep).
 use_cases: [piercing shot, chain lightning, beam]
 ```
@@ -50,7 +60,7 @@ id: pattern:diagonal
 icon: ✦
 name: Diagonal
 requires_facing: false
-targets: 3
+tile_coverage: 3
 description: Hits 2nd-ring tiles in alternating directions, skipping adjacent tiles.
 use_cases: [ricochet, crossfire, spread shot]
 ```
@@ -62,7 +72,7 @@ id: pattern:aura
 icon: ◉
 name: Aura
 requires_facing: false
-targets: 1
+tile_coverage: 1
 description: Affects the tower's own tile. Enemies passing through trigger the effect.
 use_cases: [trap, mine, ground effect]
 ```
@@ -74,7 +84,7 @@ id: pattern:cross
 icon: ⊕
 name: Cross
 requires_facing: false
-targets: 4
+tile_coverage: 4
 description: Affects the 4 orthogonal adjacent tiles only (N/S/E/W on hex grid).
 use_cases: [splash, shockwave, repel]
 ```
@@ -99,7 +109,7 @@ effect: Enemies on affected tiles take 1 poison counter per turn.
 | `first`    | Furthest along the path              |
 | `last`     | Closest to spawn                     |
 | `strongest`| Highest current Zeal                 |
-| `weakest`  | Lowest current Zeal                  |
+| `weakest`  | Lowest current Zeal                 |
 | `fastest`  | Highest speed stat                   |
 | `tagged`   | Specific enemy tag (defined on card) |
 

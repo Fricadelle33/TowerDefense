@@ -10,9 +10,9 @@ tier: [1, 2]
 cost: 4
 terrain: [swamp, forest]
 tags: [poison, zone]
-attack_pattern: pattern:ring  # references tower-attacks.md
 requires_facing: false
-targets: AoE                  # single | AoE | N (numeric cap)
+attack_pattern: pattern:ring  # references tower-attacks.md
+target_type: AoE              # single | AoE | N (numeric cap)
 target_filter: ground         # ground | aerial | all
 priority: first
 status_triggers:

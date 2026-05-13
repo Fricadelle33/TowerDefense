@@ -13,10 +13,18 @@ lore: >
 
 meta: >
   Croc O'Dill is a discard-engine hero who generates value through
-  churn rather than raw power. With 3 free plays per turn, he can
-  cycle his hand aggressively without spending play energy, setting
-  up devastating water combos mid-deck. Best paired with a damage
-  dealer who can capitalize on the poison stacks he applies.
+  churn rather than raw power. He can cycle his hand aggressively
+  without spending play energy, setting up devastating water combos
+  mid-deck. Best paired with a damage dealer who can capitalize on
+  the poison stacks he applies.
+
+  Playstyle example:
+  Discard discard discard → no combo movement, pure economy
+  Play water card 1       → combo 1, element E = water
+  Play water card 2       → combo 2
+  Play water card 3       → combo 3
+  Play tower (water)      → combo 4
+  → Effect output = 4 × totem bonus → massive poison burst
 
 tags:
   - water
@@ -44,36 +52,15 @@ skills:
     effect: >
       All players simultaneously reveal 1 card from their hand.
       If N distinct elements are represented (N = player count), 
-      Sap (3 × combo).
+      Poison 3🌀.
       Target chosen by the triggering player.
       Revealed cards remain in hand.
 
-starting_deck:
-  - card:croc-a-mole
-  - card:do-a-barrel-roll
-  - card:creature-from-the-swamp
-  - card:dilly-dallies
-  - card:steam
-
-hero_market:
-  deck:
-    - card:TBD
-    - card:TBD
-    - card:TBD
-    - card:TBD
-    - card:TBD
-  draw: 2
-  choose: 1
-  shuffles: once_per_scenario
+starting_deck: file:hero-croc-cards.md
 
 the_burrow:
   access_cost: 4 # flat buy energy cost to draw 2, choose 1 ==ToDo==
-  deck:
-    - card:swamp-tactics
-    - card:river-cunning
-    - card:croc-monsieur
-    - card:apex-predator
-    - card:TBD
+  deck: refer to file:hero-croc-burrow.md
 
 campaign_additions: []
 

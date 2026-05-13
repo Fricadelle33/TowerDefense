@@ -45,8 +45,8 @@ To discard is to sow, to play is to reap.
 
 When a card is **discarded**:
 1. `on_discard` effect triggers (if any)
-2. Combo counter checked and incremented (if element chains with previous played card)
-3. Player may play 1 card from hand
+   Note: combo counter is _not_ incremented with discarded
+2. Player may play 1 card from hand
 
 When a card is **played**:
 1. Pay cost via `free_plays` counter or a discard
@@ -54,9 +54,9 @@ When a card is **played**:
 3. Combo counter checked and incremented
 4. `buy_energy` generated (if stated on card)
 
-When a card is **purged** (end of turn):
+When a card is **purged** (end of turn or card effect):
 1. Card goes to discard pile
-2. No effects trigger
+2. No effects trigger, combo counter stays intact
 
 ⚠️ Discarding a card forfeits all its played effects,
    including any `buy_energy` it would have generated.

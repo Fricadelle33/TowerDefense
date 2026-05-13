@@ -1,3 +1,10 @@
+---
+name: market-supervisor
+description: Reviews design decisions against genre failure modes for tower defense, deck-builder, and roguelike-deckbuilder games. Use before locking major mechanics or after balance changes.
+tools: Read, Glob, Grep, WebSearch
+model: opus
+---
+
 # Agent Brief — Market & Genre Supervisor
 
 ## Read order

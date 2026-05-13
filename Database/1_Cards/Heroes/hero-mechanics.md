@@ -30,31 +30,30 @@ When an enemy is Repelled (Zeal reaches 0), rewards trigger immediately:
 
 ## The Burrow
 
-A face-down hero-specific deck. Cards are never visible until drawn.
+A face-down hero-specific deck of powerful cards.
 
-### Accessing The Burrow
-A player may access The Burrow when:
+### Access condition
 - A conditional card's `unlocks_on` condition is met, OR
-- The player spends 4 buy energy to access the Burrow
+— A hero may access the Burrow once per wave, only on a turn
+where their draw deck is empty.
 
 ### Draw procedure
-1. Draw the top 2 cards from The Burrow
-2. Choose 1 to keep — add it to your deck immediately
-3. Return the other face-down to The Burrow
-4. Shuffle The Burrow
+1. Reveal the top 2 cards from the Burrow
+2. Choose 1 — pay its buy energy cost immediately
+3. Add the chosen card to your hand or discard pile
+4. Return the unchosen card face-down to the top of the Burrow
+5. If you cannot afford either card:
+   - Return both face-down to the top of the Burrow
+   - You now know what to expect next access
+
+The Burrow is never reshuffled after game setup.
+Order is permanent — what you saw is what you'll see next time.
 
 ### Design intent
 - Face-down deck creates variance across playthroughs
 - Draw-2-choose-1 softens bad luck without eliminating it
-- Shuffle after return prevents tracking the rejected card
+- Empty deck gate rewards deck-thinning and cycling builds
+- Once per wave prevents spam regardless of hero meta
+- Individual card costs allow fine-grained power tuning per card
 
-```yaml
-the_burrow:
-  access_cost: 4   # flat buy energy cost to draw 2, choose 1
-  deck:
-    - card:TBD
-    - card:TBD
-    - card:TBD
-    - card:TBD
-    - card:TBD
-```
+Each burrow is defined in file:hero-{HERO}-burrow.md

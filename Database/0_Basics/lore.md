@@ -1,5 +1,11 @@
 # Lore
 
+## Elements
+
+This game relies on four elements used for combos and lore : Water, Leaves, Ground and Air.
+
+## Elemental Names
+
 ~~~yaml
 elementals:
   water:
