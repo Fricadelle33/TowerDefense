@@ -5,10 +5,10 @@ element: water
 tier: 1
 cost: 2
 tags: [combo, poison]
-targets: single          # single | AoE | chain
-target_filter: all       # all | ground | aerial
+target_type: single
+target_filter: all  
 effect: Sap 3.
-buy_energy: 1            # buy energy generated when played
+buy_energy: 1 
 on_discard: >
   1🪙 extra.
   If combo ≥ 2 → Poison 1 nearest enemy.

@@ -1,58 +1,72 @@
 🪙🌀
 
 ~~~yaml
-# Starting deck is low resource, unlocking the burrow is key for Croc
-name: burrow-1
+name: Beavers give a hand
 type: action
 element: water
-tags: [ ] # ==ToDo== Remove ?
 cost: 4
-targets: single          # single | AoE | chain
-target_filter: all       # all | ground | aerial
-effect: None
 on_discard: >
-  2🪙. If 🌀≥3 → Generate +2🪙
+  2🪙. If 🌀≥3 → +2🪙
+meta: Starting deck is low resource, unlocking the burrow is key for Croc
 ~~~
 
 ~~~yaml
 name: From the den
 type: action
-element: none
-tags: [ ]
+element: ground
 cost: 4
 effect: >
-  If Barrier = 0 → Barrier 1.
+  If no Barrier tokens → Barrier 2.
 on_discard: >
-  Generate 2🪙.        
+  2🪙.        
 ~~~
 
 ~~~yaml
 name: Poise of the Gator
 type: action
 element: water
-tags: [ ]
 cost: 5
-targets: single             
-target_filter: all
+target_type: single            
+target_filter: standard
 effect: >
-  If an enemy has 8 stacks of poison → Repel.
-  (Bosses & elites are immune.)
+  If target has ≥8 Poison stacks → Repel.
 ~~~
 
+~~~yaml
+name: Gator-Aid
+type: action
+element: water
+cost: 3
+on_discard:
+  Purge 1. Draw 1.
+meta: A free water card for the combo. Or to cycle your deck.
+~~~
+
+~~~yaml
+name: Entangled
+type: action
+element: leaves
+target_type: single
+target_filter: all
+effect: > # Intended prose — No canonical verb  
+  Target enemy cannot lose or gain poison stacks
+  until the end of the turn. (Existing Poison still ticks).
+on_discard:
+  2🪙
+meta: Preserve poison stacks to use poison damage
+~~~
 
 ~~~yaml
 name: Creature from the swamp (+)
 type: action
 element: water
-tags: [ ]
 cost: 6
-targets: AoE             
+target_type: AoE             
 target_filter: all
 effect: >
-  Push 1 all enemies on target tile.
-  If destination tile is occupied → Poison 1🌀 pushed enemies.
-buy_energy: 0            
-on-reveal: Remove Creature from the swamp from your deck.
+  Push 1.
+  If destination tile is occupied → Poison 1🌀. 
+upgrade: card:creature-from-the-swamp
 meta: Control the enemy advance on and poison
 ~~~
 
@@ -60,20 +74,12 @@ meta: Control the enemy advance on and poison
 name: Tsunami Wave
 type: action
 element: water
-tags: [ ]
 cost: 8
-targets: AoE
+target_type: AoE
 target_filter: all
 effect: >
-  Purge 4
-  Push 1🌀 all enemies on target tile.
+  Purge 4. Push 1🌀.
 status_triggers:
-  poison: Sap 1🌀. Cure all poison.
+  poisoned: Sap 1🌀. Remove Poison.
 meta: THE card for Croc. Needs combo multipliers to work. 
 ~~~
-
-~~~yaml
-effect: >
-  If you discarded ≥3 cards this turn → +1🌀.
-~~~
-

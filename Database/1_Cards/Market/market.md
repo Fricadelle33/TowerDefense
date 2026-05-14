@@ -40,3 +40,28 @@ market access and buy power.
 
 ## Market composition by player count
 TBD — to be defined once card set size is known
+
+
+### Market card template
+
+```yaml
+name: slug
+type: action
+element: water          # water | leaves | ground | air  — or array [water, air] for dual-element
+tier: 1                 # 1 | 2 | 3
+cost: 2                 # buy energy cost to acquire from market
+tags: [combo, poison]
+target_type: single     # single | AoE — multiplicity per affected tile
+target_filter: all      # all | ground | aerial | standard
+effect: Sap 3.
+on_discard: 1🪙. If combo ≥ 2 → Poison 1 nearest enemy.
+status_triggers:
+  poisoned: Sap 6 instead
+  burning: Sap 5 and Push 1
+terrain_affinity:
+  swamp: +1 Sap
+loop-risk: false
+```
+
+> Action cards do NOT use `attack_pattern`. The effect text describes
+> the spatial footprint. Patterns are tower-only.

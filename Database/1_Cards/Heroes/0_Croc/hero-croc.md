@@ -56,11 +56,9 @@ skills:
       Target chosen by the triggering player.
       Revealed cards remain in hand.
 
-starting_deck: file:hero-croc-cards.md
+starting_deck: hero-croc-cards
 
-the_burrow:
-  access_cost: 4 # flat buy energy cost to draw 2, choose 1 ==ToDo==
-  deck: refer to file:hero-croc-burrow.md
+the_burrow: hero-croc-burrow
 
 campaign_additions: []
 

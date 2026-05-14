@@ -76,6 +76,7 @@ On-discard effects do **not** trigger on purge or dismiss.
 
 ### Combo
 Element E is defined by the first card **played** this turn.
+If that first card is **dual-element**, the playing hero must **declare** which of its two elements becomes Element E before any effects resolve.
 Cards of a different element must be discarded — they do not
 affect the combo counter.
 
@@ -113,15 +114,20 @@ Combo resets: end of turn, or upon a combo-breaking effect.
 
 | Field | Purpose |
 |:------|:--------|
-| `element` | Defines the combo element (one per card) |
+| `element` | Defines the combo element; accepts a single value or a two-value array `[water, air]` for dual-element cards |
 | `icons` | List of effect-type icons (can have multiples) |
 | `effect_type` | What the combo output drives |
 | `on_discard` | Effect triggered on discard (not purge, not dismiss) |
+| `upgrade`   | Remove the target card from your deck and replace it with the card bearing this field |
 | `buy_energy` | Buy energy generated when played |
 | `free_plays` | Hero attribute — cards played free before discarding |
 | `zeal` | Enemy attribute — organizational momentum pool |
 | `terrain_affinity` | Conditional modifiers based on quadrant terrain — same resolution as `status_triggers` |
 | `loop-risk` | Flag for playtesting — draw + buy energy on discard |
+
+Note: both `terrain_affinity` and `status_triggers` can use negation slugs prefix `not-`
+e.g. `not-poisoned` === every status but poisoned (or no status)
+e.g. `not-swamps` === every other terrain than swamps: mountains + jungle + plains
 
 ---
 

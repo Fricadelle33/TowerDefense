@@ -71,7 +71,7 @@ naturally emerge — escalating the side-quest pressure alongside wave difficult
 ## Template
 
 ```yaml
-name: contract-slug
+name: contract:slug
 flavor: >
   One evocative sentence. Personality over description.
 category: combo           # combo | repel | survival | hero | sacrifice | cooperative

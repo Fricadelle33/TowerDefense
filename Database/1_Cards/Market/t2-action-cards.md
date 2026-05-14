@@ -9,8 +9,8 @@ element: water
 tier: 2
 cost: 2
 tags: [combo, poison]
-targets: single          # single | AoE | chain
-target_filter: all       # all | ground | aerial
+target_type: single          # single | AoE | chain
+target_filter: all      # all | ground | aerial | standard
 effect: Purge Swamp Gas from your hand. Sap 3.
 buy_energy: 1            # buy energy generated when played
 on_discard: >

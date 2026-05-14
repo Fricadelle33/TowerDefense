@@ -69,6 +69,7 @@ Resolve sequentially, starting from the first player then clockwise:
 **a. Play phase**
 - Discard cards to generate play energy (1 discard → 1 play)
 - Play cards from hand using play energy or free_plays counter
+- If the first card played is dual-element, the playing hero must **declare** which element becomes Element E before effects resolve.
 - Buy cards from market using buy energy
 - Resolve all effects, Zeal-sap, and status triggers
 
@@ -82,25 +83,8 @@ Resolve sequentially, starting from the first player then clockwise:
 - Draw up to `hero:starting_hand_size`
 
 ### 2. Enemy turn
-Resolve per enemy, sequentially from furthest along path to closest:
 
-1. **Per-turn effects** — Erode N, Ravage N, Summon N, Embolden check
-2. **Status ticks**
-   - Poison: lose Zeal equal to stack count, stack count decreases by 1
-   - Burning: lose 1 Zeal, check propagation
-3. **Move** — advance speed tiles along path
-
-After all enemies have moved:
-
-4. **Tower effects** — for each tower on the board:
-   - If no enemy is within attack pattern range: tower does not fire
-   - `targets: single` → fire at highest priority enemy in range
-   - `targets: AoE` → fire at all enemies in range simultaneously
-   - Apply terrain_affinity modifiers
-5. **Objective reached** — for each enemy now at the exit:
-   - Trigger on_reach_exit effect
-   - Erode current quadrant
-   - Remove meeple — no repel rewards
+file: enemies-movement
 
 ### 3. End of round
 - Decrement all status durations (burning, frozen, thawed)

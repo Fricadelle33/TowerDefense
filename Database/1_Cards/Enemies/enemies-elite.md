@@ -1,7 +1,5 @@
 # Elite and Boss Enemies
 
----
-
 ## Elite card template
 
 ```yaml

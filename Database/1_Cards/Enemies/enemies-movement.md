@@ -41,8 +41,9 @@ Resolved per enemy, sequentially from **furthest along path to closest**:
   a. For each tower on the board, check if any enemy is within its `attack_pattern` range
   b. If no enemy in range: tower does not fire this turn
   c. If enemies in range:
-    - `targets: single` → fire at highest `priority` enemy in range
-    - `targets: AoE` → fire at all enemies in range simultaneously
+    - `target_type: single` → fire at highest `priority` enemy in range
+    - `target_type: AoE` → fire at all enemies in range simultaneously
+    - `target_type: per_tile` → fire at one enemy (single) per pattern tile
   d. Apply tower effect to target(s)
   e. Apply terrain_affinity modifiers
 

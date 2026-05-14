@@ -5,7 +5,7 @@
 ```yaml
 name: Oil leak
 type: standard                # standard | elite | boss
-difficulty_rating: 3          # back office — informs scenario design and rewards
+difficulty_rating: 3          # back office — informs scenario design and rewards (1-5)
 
 zeal: 12
 speed: 2                      # tiles moved per enemy turn
@@ -39,7 +39,9 @@ terrain_affinity:
 # Rewards for standard enemies are written in the rules
 ```
 
-## All cards
+---
+
+##  Cards
 
 ```yaml
 name: Oil Rat
