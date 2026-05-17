@@ -2,11 +2,11 @@
 
 ## Core vocabulary
 
-### Zeal 
+### Zeal
 
 An enemy's drive and organizational momentum. Replaces HP on all enemy cards. When Zeal reaches 0, the enemy is Repelled.
 
-### Repel 
+### Repel
 
 The moment an enemy's Zeal reaches 0. The enemy meeple is removed from the path. Triggers repel rewards immediately. Can be a card effect.
 
@@ -142,27 +142,9 @@ cooldown:
 
 ## Card effect shorthand
 
-Card effects use terse verb + number notation:
-
-| Notation      | Meaning                                                             |
-|:--------------|:--------------------------------------------------------------------|
-| Sap N         | Reduce target enemy Zeal by N                                       |
-| Slow N        | Reduce target enemy speed by N this turn                            |
-| Freeze        | Reduce target enemy speed to 0 this turn. Transitions to Thawed.    |
-| Ravage N      | Reduce global resilience by N permanently                           |
-| Erode N       | Place N desolation tokens on the current quadrant                   |
-| Poison N      | Apply N poison stacks to target                                     |
-| Push N        | Move target N tiles back along the path                             |
-| Restore N     | Restore N land integrity                                            |
-| Reinforce N   | Add N durability to target tower                                    |
-| Barrier N     | Place N barrier tokens on a quadrant (absorbs Erode 1:1)            |
-| Remove N      | Permanently remove N cards from hand or discard pile                |
-| N🪙           | Generate N buy energy                                               |
-| Silence N     | Silence target tower or totem for N turns                           |
-| Summon N      | Reveal the next N cards in the wave deck immediately.               |
-| Embolden N    | Gain N Zeal at end of turn if no Sap was applied this turn          |
-
-Effects scale with combo formula unless stated otherwise.
+```yaml
+file: effects-vocabulary
+```
 
 ## Combo multiplier
 

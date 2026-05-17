@@ -62,7 +62,7 @@ target_filter: all
 effect: >
   Slow 1.
 status_triggers:
-  burning: Remove Burn.
+  burning: Also remove Burn.
 meta: Dual-element card to vary the deck.
 ~~~
 
@@ -89,23 +89,22 @@ meta: Money or combo... Your choice.
 ~~~
 
 ~~~yaml
-# ==ToDo== Check / rewrite
 name: Croc n' roll
 type: action
-element: ground
-effect: > # claude: strict-validator override
-  2🪙 (element:ground card only)
-on_discard: # claude: strict-validator override
-  Place this card on a player's play area. It counts towards their combo. Return this card end of turn.
+element: earth
+effect: > 
+  If a market card is element:earth → +2🪙
+on_discard:
+  Lend this card.
 meta: Money or coop :)
 ~~~
 
-## Towers
+## Starting Towers
 
 ~~~yaml
 name: Venomous Fern
 type: tower
-element: air
+element: earth
 cost: 4
 terrain: [swamp, jungle]
 tags: [poison, zone]
@@ -115,7 +114,7 @@ target_type: AoE
 target_filter: ground
 priority: first
 status_triggers:
-  poisoned: Remove 1 Poison.
+  poisoned: Sap 1 and Remove 1 Poison instead.
 upgrade_condition: contract:green-thumb
 levels:
   1:
@@ -123,8 +122,9 @@ levels:
   2:
     effect: Poison 1🌀.
 terrain_affinity: 
-  mountains: -2 to all effects # ==ToDo== Not sure
-  plains: -2 to all effects # ==ToDo== Not sure
+  mountains: 🌀-2
+  plains: 🌀-2
+meta: Early: convert poison to damage. Best for mid to late game.
 ~~~
 
 ~~~yaml
@@ -138,8 +138,8 @@ attack_pattern: pattern:line
 target_type: per_tile                      # 1 enemy per tile of the pattern 
 target_filter: ground
 status_triggers:
-  poisoned: Remove 1 Poison.
-upgrade_condition: hero:croc-o-dill:burrow-empty
+  poisoned: also Remove 1 Poison.
+upgrade_condition: burrow-empty            # Croc o' dill starting card: hero condition is implied
 levels:
   1:
     effect: >
@@ -149,6 +149,5 @@ levels:
     effect: > 
       Sap 1🌀.
       On repel → Trigger any `on_discard` effect played this turn 
-terrain_affinity: # ==ToDo== Not sure
-  not-swamp: Salmon tribe cannot be played.
+placement_restriction: swamp
 ~~~

@@ -1,10 +1,12 @@
 # Deck of Secrets — The Fairy Well
 
 ## Description
+
 The Fairy Well is a deck of secrets, powerful cards, unlockable as contract or elite rewards.
 We strongly advise players to not look at or draw from the deck of secrets unless invited to.
 
 ## Number cards
+
 Cards in the Well are numbered. The deck should not be shuffled at any point in time.
 Whenever a player gains a Fairy Well card, he places the card face down, without looking at it next to the wave deck.
 If they successfully complete the wave, players collectively read the card and apply the effect.

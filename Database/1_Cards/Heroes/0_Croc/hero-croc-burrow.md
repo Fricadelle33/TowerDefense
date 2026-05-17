@@ -1,4 +1,4 @@
-🪙🌀
+# Croc Burrow
 
 ~~~yaml
 name: Beavers give a hand
@@ -13,7 +13,7 @@ meta: Starting deck is low resource, unlocking the burrow is key for Croc
 ~~~yaml
 name: From the den
 type: action
-element: ground
+element: earth
 cost: 4
 effect: >
   If no Barrier tokens → Barrier 2.
@@ -46,11 +46,11 @@ meta: A free water card for the combo. Or to cycle your deck.
 name: Entangled
 type: action
 element: leaves
+cost: 3
 target_type: single
 target_filter: all
-effect: > # Intended prose — No canonical verb  
-  Target enemy cannot lose or gain poison stacks
-  until the end of the turn. (Existing Poison still ticks).
+effect: >
+  Seal Poison.
 on_discard:
   2🪙
 meta: Preserve poison stacks to use poison damage
@@ -80,6 +80,7 @@ target_filter: all
 effect: >
   Purge 4. Push 1🌀.
 status_triggers:
-  poisoned: Sap 1🌀. Remove Poison.
+  poisoned: >
+    also Sap 1🌀. Remove Poison.
 meta: THE card for Croc. Needs combo multipliers to work. 
 ~~~

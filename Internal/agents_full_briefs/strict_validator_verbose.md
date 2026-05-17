@@ -84,10 +84,10 @@ Check that field values fall in their declared ranges or enum sets.
 
 - `type` (cards): `action | tower | enemy | hero | totem | contract | scenario`
 - `type` (enemies): `standard | elite | boss`
-- `element`: `water | leaves | ground | air | any`
+- `element`: `water | leaves | earth | air | any`
 - `tier`: `1 | 2 | 3` (or `[1, 2]`, `[2, 3]` for towers spanning tiers)
 - `targets`: `single | AoE | chain | N` (where N is an integer 1-9)
-- `target_filter`: `all | ground | aerial`
+- `target_filter`: `all | ground | aerial | standard`
 - `priority`: `first | last | strongest | weakest | fastest | tagged`
 - `attack_pattern`: `pattern:ring | pattern:cone | pattern:line | pattern:diagonal | pattern:aura | pattern:cross`
 - `requires_facing`: `true | false`
@@ -225,7 +225,7 @@ Flag missing instead/also keywords on ambiguous effects.
 
 **Canonical tags (initial set, expand as needed):**
 
-- Element tags: `water, leaves, ground, air`
+- Element tags: `water, leaves, earth, air`
 - Effect-type tags: `combo, damage, sap, poison, burn, frost, slow, push, heal, draw, economy, remove, reveal`
 - Archetype tags: `engine, discard-engine, market-runner, support, dps, tank, totem-builder`
 - Zone tags: `zone, AoE, single-target`

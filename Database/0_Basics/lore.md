@@ -20,7 +20,7 @@ elementals:
     Satyrs
     Tapio       # Finnish forest god
     Mielikki    # Finnish forest huntress
-  ground:
+  earth:
     Gnomes
     Hulder
     Landvættir  # Icelandic land spirits

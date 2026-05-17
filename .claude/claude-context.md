@@ -21,60 +21,78 @@ eventual physical printing.
 ## Project structure
 
 ```text
-.claude/
-  claude-context.md       # this file
-  agents/
-    strict_validator.md
-    market_supervisor.md
-    creative_player.md
-    adversarial_gm.md
-    rotating_player.md
-
-Database/
-  _Internal/
-    __toDo                # authoritative open-issues list
-  0_Basics/
-    0-getting-started.md
-    rules.md
-    economy-and-engine.md
-    game-setup.md
-    lore.md
-  1_Cards/
-    effects.md            # status effect definitions
-    effects-vocabulary.md # canonical card-writing language reference
-    market.md             # market mechanics (shared market)
-    fairy-well.md         # The Fairy Well deck mechanics
-    Action/
-      t1-action-cards.md
-      t2-action-cards.md
-    Enemies/
-      enemies-standard.md
-      enemies-elite.md
-      enemies-movement.md
-    Heroes/
-      hero-mechanics.md
-      0_Croc/
-        hero-croc.md
-        hero-croc-cards.md
-        hero-croc-burrow.md
-    Towers/
-      towers.md
-      tower-placement.md
-      tower-attacks.md
-      tower-attack-patterns.svg
-    Totems/
-      totems-mechanics.md
-      totems-cards.md
-  2_Board/
-    contracts.md
-    scenarios.md
-    Material/
-      mat.md
-      hex-tiles.md
-      material-list.md
-  3_Misc/
-    glossary.md
-    trad-fr.md
+TOWERDEFENSE
+|   .claudesignore
+|   .gitignore
+|   LICENSE
+|   README.md
+|   
++---.claude
+|   |   claude-context.md
+|   |   
+|   \---agents
+|           agents.xml
+|           
++---Database
+|   +---0_Basics
+|   |       0-getting-started.md
+|   |       design-guidelines.md
+|   |       economy-and-engine.md
+|   |       effects-vocabulary.md
+|   |       effects.md
+|   |       game-setup.md
+|   |       lore.md
+|   |       market.md
+|   |       rules.md
+|   |       
+|   +---1_Cards
+|   |   +---Actions
+|   |   |       action-t1-cards.md
+|   |   |       action-t2-cards.md
+|   |   |       action-template.md
+|   |   |       
+|   |   +---Enemies
+|   |   |       enemies-elite.md
+|   |   |       enemies-movement.md
+|   |   |       enemies-standard.md
+|   |   |       
+|   |   +---Fairy Well
+|   |   |       fairy-well-cards.md
+|   |   |       fairy-well.md
+|   |   |       
+|   |   +---Heroes
+|   |   |   |   hero-mechanics.md
+|   |   |   |   
+|   |   |   \---0_Croc
+|   |   |           hero-croc-burrow.md
+|   |   |           hero-croc-cards.md
+|   |   |           hero-croc.md
+|   |   |           
+|   |   +---Totems
+|   |   |       totem-cards.md
+|   |   |       totem-mechanics.md
+|   |   |       totem-template.md
+|   |   |       
+|   |   \---Towers
+|   |           tower-attack-patterns.svg
+|   |           tower-attacks.md
+|   |           tower-cards.md
+|   |           tower-placement.md
+|   |           tower-template.md
+|   |           
+|   +---2_Board
+|   |   |   contracts.md
+|   |   |   printing_constraints.md
+|   |   |   scenarios.md
+|   |   |   
+|   |   \---Material
+|   |           hex-tiles.md
+|   |           mat.md
+|   |           material-list.md
+|   |           
+|   \---3_Misc
+|           glossary.md
+|           trad-fr.md
 ```
 
 ## Design philosophy
@@ -102,7 +120,7 @@ Database/
 ## Card effect shorthand
 
 ```yaml
-file: [Database/1_Cards/effects, Database/1_Cards/effects-vocabulary]
+file: [effects, effects-vocabulary]
 ```
 
 ## Key mechanics 
@@ -110,39 +128,38 @@ file: [Database/1_Cards/effects, Database/1_Cards/effects-vocabulary]
 ### Summary
 
 ```yaml
-file: [Database/0_Basics/rules, Database/0_Basics/economy-and-engine]
+file: [rules, economy-and-engine]
 ```
 
 ### Towers
 
 ```yaml
-file: [Database/1_Cards/Towers/tower-attacks,
-       Database/1_Cards/Towers/tower-placement]
+file: [tower-attacks, tower-placement]
 
 ```
 
 ### Totems
 
 ```yaml
-file: Database/1_Cards/Totems/totem-mechanics
+file: totem-mechanics
 ```
 
 ### Hero mechanics, progression and XP 
 
 ```yaml
-file: Database/1_Cards/Heroes/hero-mechanics
+file: hero-mechanics
 ```
 
 ### The Fairy Well
 
 ```yaml
-file: Database/1_Cards/Fairy Well/fairy-well
+file: fairy-well
 ```
 
 ### Markets
 
 ```yaml
-file: Database/1_Cards/Market/market.md
+file: market
 ```
 
 ---
@@ -152,44 +169,43 @@ file: Database/1_Cards/Market/market.md
 ### Action cards
 
 ```yaml:
-file: Database/1_Cards/Market/market
+file: action-template
 ```
 
 ### Tower card
 
 ```yaml
-file: Database/1_Cards/Towers/tower-cards
+file: tower-template
 ```
 
 ### Enemy card (standard/elite)
 
 ```yaml
-file: [Database/1_Cards/Enemies/enemies-standard,
-       Database/1_Cards/Enemies/enemies-elite]
+file: enemies-template
 ```
 
 ### Hero card
 
 ```yaml
-file: Database/1_Cards/Heroes/hero-mechanics
+file: hero-mechanics
 ```
 
 ### Totem card
 
 ```yaml
-file: Database/1_Cards/Totems/totems-cards
+file: totem-template
 ```
 
 ### Contract card
 
 ```yaml
-file: Database/2_Board/contracts
+file: contract-template
 ```
 
 ### Scenario card
 
 ```yaml
-file: Database/2_Board/scenarios
+file: scenario-tempalte
 ```
 
 ---

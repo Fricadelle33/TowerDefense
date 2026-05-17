@@ -1,6 +1,7 @@
 # Attack Patterns
 
 ## Grid system
+
 - **Type**: Hex grid, flat-top orientation
 - **Tile size**: 25mm
 - **Facing**: Towers with `requires_facing: true` use a yellow-edge hex tile to indicate direction
