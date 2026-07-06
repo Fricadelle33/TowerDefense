@@ -6,7 +6,7 @@ type: tower
 element: water
 tier: [1, 2]
 cost: 4
-terrain: [swamp, forest]
+terrain: [swamp, forest]       # swamp | jungle | mountains | plains | none
 tags: [poison, zone]
 requires_facing: false
 attack_pattern: pattern:ring   # pattern:single-tile | pattern:ring |
@@ -20,7 +20,6 @@ status_triggers:
 terrain_affinity:              # swamp | jungle | mountains | plains | none
   mountains: +2 to all effects
   jungle: -2 to all effects
-placement_restriction: swamp   # swamp | jungle | mountains | plains | none
 upgrade_condition: contract:green-thumb
 levels:
   1:

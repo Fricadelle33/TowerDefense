@@ -19,6 +19,15 @@ Last reviewed *2026-05-04* — full pass across all files
 
 ---
 
+## Global ToDo
+
+- Replace Enemy with Gloomer/Murker
+Term	Role
+The Tide	The collective phenomenon — "the Tide advances", wave numbering, lore
+Gloomers	Ground unit category (creeping, corrupting)
+Murkers	Stealth / corrupted variant
+Plumes	Flying unit category
+
 ## Content — Empty or stub
 
 - [ ] **`enemies-standard.md`** — template missing, zero content. Write template first,
@@ -122,3 +131,20 @@ status_triggers:
   poisoned: Erode 1 additional on current quadrant per tick
 meta: Counter to Croc's meta
 ```
+
+## Croc ideas
+
+On thawed: tick poison
+If all enemies are poisoned in a pattern ->effect
+If an allied tower targets ≥3 Poisoned enemies → Repel 1.
+Croc n' roll
+
+## Lore 
+
+My recommendation: Invader... no. Actually Tide or Surge.
+Tide works on multiple levels:
+
+It advances rather than attacks
+It has Zeal (momentum, force) and Shield (resistance)
+It can be repelled — which is exactly your vocabulary
+It fits any element thematically (fire tide, rot tide, frost tide)

@@ -110,6 +110,8 @@ TOWERDEFENSE
 | --- | --- |
 | HP (enemy) | Zeal |
 | HP (Wights/land) | land integrity |
+| Enemy (individuals) | Gloomer |
+| Enemy (entity) | The Tide |
 | Kill/defeat | Repel |
 | Deal damage | Sap |
 | Damage to land | Erode (quadrant) / Ravage (global) |

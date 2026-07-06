@@ -63,8 +63,13 @@
 4. Combo bonuses (totems).
 5. `on-play` effects (totems).
 
-## Metadata Standards
+## Metadata Standards – Default values
 
 - `slug`: `card:[lowercase-hyphenated-name]`
 - `element: [type1, type2]` (Dual-element requires player declaration on play).
-- Mandatory declarations: `loop-risk` (if true), `requires_facing` (towers), `tier` (except starters and burrows), `cost` (except starters).
+- If a field is not explicitly defined, it is considered null / not applicable for this card.
+- Mandatory declarations: >
+    - `loop-risk` if true
+    - `requires_facing` (towers only)
+    - `tier` (except starters and burrows)
+    - `cost` (except starters)

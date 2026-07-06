@@ -31,6 +31,7 @@ Some cards and totems may raise the shared pool permanently or temporarily.
 - Towers must be placed on a hex tile on an active (non-Ravaged) quadrant
 - Towers may not be placed on path tiles occupied by an enemy meeple
 - Towers with `requires_facing: true` must declare facing on placement
+- Towers must be placed on their `terrain` tiles
 - Terrain affinity applies automatically based on the quadrant's terrain
 
 ## Terrain affinity

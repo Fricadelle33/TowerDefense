@@ -29,7 +29,7 @@ cost: 5
 target_type: single            
 target_filter: standard
 effect: >
-  If target has ≥8 Poison stacks → Repel.
+  If you applied ≥8 Poison stacks this turn → Repel 1.
 ~~~
 
 ~~~yaml
@@ -37,7 +37,7 @@ name: Gator-Aid
 type: action
 element: water
 cost: 3
-on_discard:
+on_discard: >
   Purge 1. Draw 1.
 meta: A free water card for the combo. Or to cycle your deck.
 ~~~
@@ -49,7 +49,7 @@ element: leaves
 cost: 3
 target_type: single
 target_filter: all
-effect: >
+effect:
   Seal Poison.
 on_discard:
   2🪙
@@ -60,7 +60,7 @@ meta: Preserve poison stacks to use poison damage
 name: Creature from the swamp (+)
 type: action
 element: water
-cost: 6
+cost: 5
 target_type: AoE             
 target_filter: all
 effect: >
@@ -74,13 +74,13 @@ meta: Control the enemy advance on and poison
 name: Tsunami Wave
 type: action
 element: water
-cost: 8
+cost: 6
 target_type: AoE
 target_filter: all
-effect: >
-  Purge 4. Push 1🌀.
+effect: 
+  Purge 3. Push 2🌀. 
 status_triggers:
-  poisoned: >
+  poisoned:
     also Sap 1🌀. Remove Poison.
-meta: THE card for Croc. Needs combo multipliers to work. 
+meta: THE card for Croc. Get rid of your hand to launch a powerful combo Needs combo totems to work. 
 ~~~

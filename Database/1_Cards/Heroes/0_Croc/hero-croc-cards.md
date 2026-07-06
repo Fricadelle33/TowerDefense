@@ -35,22 +35,18 @@ type: action
 element: water
 target_type: single
 target_filter: all
-effect: >
+effect:
   Sap 1.
-status_triggers:
-  poisoned: Poison 2 instead.
+  Poison 1 (different target).
 ~~~
 
 ~~~yaml
 name: Do a barrel roll
 type: action
 element: water
-target_type: single
-target_filter: all
 effect: >
   Barrier 1.
-status_triggers:
-  poisoned: Poison 2 instead.
+  If quadrant has ≥3 desolation tokens, Barrier 2 instead.
 ~~~
 
 ~~~yaml
@@ -59,7 +55,7 @@ type: action
 element: [water, air]
 target_type: AoE
 target_filter: all
-effect: >
+effect:
   Slow 1.
 status_triggers:
   burning: Also remove Burn.
@@ -69,11 +65,11 @@ meta: Dual-element card to vary the deck.
 ~~~yaml
 name: Croconavirus
 type: action
-element: air
+element: [water, air]
 target_type: AoE
-target_filter: aerial
-effect: >
-  Tick Poison.
+target_filter: all
+effect:
+  Tick Poison. Remove 1 Poison. 
 meta: A powerful double poison
 ~~~
 
@@ -89,14 +85,16 @@ meta: Money or combo... Your choice.
 ~~~
 
 ~~~yaml
-name: Croc n' roll
+name: Ice Croc Sandwich
 type: action
-element: earth
-effect: > 
-  If a market card is element:earth → +2🪙
-on_discard:
-  Lend this card.
-meta: Money or coop :)
+element: water
+cost: 4
+target_type: ground
+target_filter: standard
+status_triggers:
+  thawed: Tick Poison
+  frozen: Seal Poison
+on_discard: 1🪙
 ~~~
 
 ## Starting Towers
@@ -135,19 +133,16 @@ cost: 4
 terrain: [swamp]
 requires_facing: true
 attack_pattern: pattern:line
-target_type: per_tile                      # 1 enemy per tile of the pattern 
+target_type: per_tile                      # 1 target per tile of the pattern 
 target_filter: ground
-status_triggers:
-  poisoned: also Remove 1 Poison.
 upgrade_condition: burrow-empty            # Croc o' dill starting card: hero condition is implied
 levels:
   1:
     effect: >
-      Sap 1.
-      On repel → Trigger any `on_discard` effect played this turn (once)
+      Sap 1. Remove 1 Poison.
+      On repel → Trigger any `on_discard` effect played this turn (once per turn)
   2:
     effect: > 
-      Sap 1🌀.
-      On repel → Trigger any `on_discard` effect played this turn 
-placement_restriction: swamp
+      Sap 2🌀. Remove 1🌀 Poison (down to 1 Poison minimum). 
+      On repel → Trigger any `on_discard` effect played this turn (once per turn)
 ~~~

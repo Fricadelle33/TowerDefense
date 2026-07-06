@@ -16,8 +16,10 @@ automatically.
 - Starting capacity: 5 totem slots in the shared zone
 - Never in any player's deck
 - All players benefit from all active totems
-- Awarded by: contract completion, elite repels, level-up unlocks
-- If at capacity: group negotiates which totem to replace
+- Awarded by: 
+  - Low-tier: Contract completion, elite repels, level-up unlocks
+  - High-tier: Fairy Well 
+- If at capacity: group negotiates which totem to replace. Replaced totems are removed from the game. 
 
 ### Silence
 Elites may Silence one or more totems as an ability.
